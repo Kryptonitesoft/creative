@@ -1,9 +1,19 @@
 <?php
 
 Route::model('files', 'App\Models\Fileentry');
+Route::model('exams', 'App\Models\Exam');
+Route::model('results', 'App\Models\Result');
 
 Route::bind('files', function($value, $route){
 	return App\Models\Fileentry::whereFilename($value)->first();
+});
+
+Route::bind('exams', function($value, $route){
+	return App\Models\Fileentry::whereTitle($value)->first();
+});
+
+Route::bind('results', function($value, $route){
+	return App\Models\Fileentry::whereId($value)->first();
 });
 
 
@@ -47,7 +57,9 @@ Route::resource('files', 'FileEntryController');
  * exam resource route
  */
 
-Route::resource('exam', 'ExamController');
+Route::resource('exams', 'ExamsController');
+Route::resource('exams.results', 'ResultsController');
+
 
 
 /**
