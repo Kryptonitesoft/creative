@@ -1,15 +1,16 @@
 <?php namespace App\Http\Controllers;
 
-
+use Redirect;
 use App\Models\Exam;
 use App\Models\Result;
 use App\Http\Requests;
+use App\Http\Requests\ResultRequest;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Tests\RedirectResponseTest;
 
 class ResultsController extends Controller {
-
 
 
 	/**
@@ -17,9 +18,16 @@ class ResultsController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(Exam $exam)
+	public function store(ResultRequest $request, Exam $exam)
 	{
-		//
+        $input = $request->all();
+        $input['exam_id'] = $exam->id;
+
+        //dd($input);
+
+        Result::create($input);
+
+        return Redirect::route('exams.show', $exam->id)->with('message', 'Result successfully added.');
 	}
 
 
@@ -31,7 +39,7 @@ class ResultsController extends Controller {
 	 */
 	public function edit(Exam $exam, Result $result)
 	{
-		//
+		return view('results.edit', compact('exam', 'result'));
 	}
 
 	/**
@@ -40,9 +48,11 @@ class ResultsController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update(Exam $exam, Result $result)
+	public function update(ResultRequest $request, Exam $exam, Result $result)
 	{
-		//
+		$result->update($request->all());
+
+        return Redirect::route('exams.show', $exam->id)->with('message', 'Successfully result updated');
 	}
 
 	/**
@@ -53,7 +63,9 @@ class ResultsController extends Controller {
 	 */
 	public function destroy(Exam $exam, Result $result)
 	{
-		//
+		$result->delete();
+
+        return Redirect::route('exams.show', $exam->id)->with('message', 'Successfully record deleted.');
 	}
 
 }

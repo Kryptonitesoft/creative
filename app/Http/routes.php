@@ -9,11 +9,11 @@ Route::bind('files', function($value, $route){
 });
 
 Route::bind('exams', function($value, $route){
-	return App\Models\Fileentry::whereTitle($value)->first();
+	return App\Models\Exam::whereId($value)->first();
 });
 
 Route::bind('results', function($value, $route){
-	return App\Models\Fileentry::whereId($value)->first();
+	return App\Models\Result::whereId($value)->first();
 });
 
 

@@ -1,17 +1,17 @@
 @extends('app')
 @section('content')
 
+	<h2>Create a new exams</h2>
+
 	{!! Form::open([
 		'route' => 'exams.store',
-		'class' => 'form',
+		'class' => 'form-inline',
 		'novalidate' => 'novalidate' ]) !!}
 
 		@include('exams.partials.form', ['submit_text' => 'Create'])
 
 	{!! Form::close() !!}
 
-
-	<h2>Create a new exams</h2>
 
 	<h2>Exams list</h2>
 
@@ -24,15 +24,14 @@
 					{!! Form::open([
 						'class' => 'form-inline',
 						'method' => 'DELETE',
-						'route' => ['exams.destroy', $exam->title]
+						'route' => ['exams.destroy', $exam->id]
 					]) !!}
 
 					(
-						<a href="{!! route('exams.show', $exam->slug) !!}">{!! $exam->title !!}</a>
-						{!! link_to_route('exams.edit', 'Edit', ['$exam->slug'], ['class' => 'btn btn-info']) !!}
+						<a href="{!! route('exams.show', $exam->id ) !!}">{!! $exam->title !!}</a>
+						{!! link_to_route('exams.edit', 'Edit', [$exam->id], ['class' => 'btn btn-info']) !!}
+						{!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
 					)
-
-					{!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
 
 					{!! Form::close() !!}
 				</li>

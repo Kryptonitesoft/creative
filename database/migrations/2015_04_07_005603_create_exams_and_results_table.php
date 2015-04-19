@@ -17,7 +17,6 @@ class CreateExamsAndResultsTable extends Migration {
 			
             $table->increments('id');
             $table->string('title', 100);
-            $table->string('slug');
             $table->string('subject', 10);
             $table->string('class', 10);
             $table->tinyInteger('mark_range', false, true, 3)->unsigned();

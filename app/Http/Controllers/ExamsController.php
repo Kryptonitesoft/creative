@@ -1,7 +1,10 @@
 <?php namespace App\Http\Controllers;
 
+use Input;
+use Redirect;
 use App\Models\Exam;
 use App\Http\Requests;
+use App\Http\Requests\ExamRequest;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
@@ -34,9 +37,11 @@ class ExamsController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(ExamRequest $request)
 	{
-		//
+		Exam::create($request->all());
+
+		return Redirect::route('exams.index')->with('message', 'Exam is listed');
 	}
 
 	/**
@@ -47,7 +52,7 @@ class ExamsController extends Controller {
 	 */
 	public function show(Exam $exam)
 	{
-		return view('exams.show', compact($exam));
+		return view('exams.show', compact('exam'));
 	}
 
 	/**
@@ -56,9 +61,9 @@ class ExamsController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit()
+	public function edit(Exam $exam)
 	{
-		//
+		return view('exams.edit', compact('exam'));
 	}
 
 	/**
@@ -67,9 +72,12 @@ class ExamsController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update(Exam $exam)
+	public function update(Exam $exam, ExamRequest $request)
 	{
-		//
+		$input = array_except($request->all(), '_method');
+        $exam->update($input);
+
+        return Redirect::route('exams.index')->with('message', 'Exam successfully updated.');
 	}
 
 	/**
@@ -80,7 +88,9 @@ class ExamsController extends Controller {
 	 */
 	public function destroy(Exam $exam)
 	{
-		//
+		$exam->delete();
+
+        return Redirect::route('exams.index')->with('message', 'Successfully exam record deleted');
 	}
 
 }
