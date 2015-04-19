@@ -2,21 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="35551848-bb02-4a95-b9c9-76d38cc5d943" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/results/edit.blade.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/results/partials/form.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2015_04_07_005603_create_exams_and_results_table.php" afterPath="$PROJECT_DIR$/database/migrations/2015_04_07_005603_create_exams_and_results_table.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Models/Exam.php" afterPath="$PROJECT_DIR$/app/Models/Exam.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ExamsController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ExamsController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/seeds/ExamsTableSeeder.php" afterPath="$PROJECT_DIR$/database/seeds/ExamsTableSeeder.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Models/Result.php" afterPath="$PROJECT_DIR$/app/Models/Result.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ResultsController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ResultsController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/app.blade.php" afterPath="$PROJECT_DIR$/resources/views/app.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/exams/edit.blade.php" afterPath="$PROJECT_DIR$/resources/views/exams/edit.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/exams/partials/form.blade.php" afterPath="$PROJECT_DIR$/resources/views/exams/partials/form.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/exams/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/exams/index.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/exams/show.blade.php" afterPath="$PROJECT_DIR$/resources/views/exams/show.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
     <ignored path="uucse.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -88,7 +74,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/database/migrations/2015_04_07_011247_create_categorie_post_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2015_04_07_011032_create_comments_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2015_04_07_005940_create_results_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2015_04_07_035344_create_catagory_post_pivot_table.php" />
@@ -139,6 +124,7 @@
         <option value="$PROJECT_DIR$/resources/views/exams/show.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ResultsController.php" />
         <option value="$PROJECT_DIR$/resources/views/results/edit.blade.php" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -355,13 +341,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HomeController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.29577464" vertical-offset="252" max-vertical-offset="882">
-          <caret line="20" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/pages/home.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="595">
@@ -728,6 +707,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.37037036" vertical-offset="1302" max-vertical-offset="1995">
           <caret line="79" column="44" selection-start-line="79" selection-start-column="44" selection-end-line="79" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3181818" vertical-offset="0" max-vertical-offset="735">
+          <caret line="9" column="28" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
           <folding />
         </state>
       </provider>
