@@ -20,6 +20,7 @@ class CreatePostsTable extends Migration {
             $table->text('body');
             $table->string('slug', 300);
             $table->smallInteger('views', false, true);
+            $table->smallInteger('comment_count', false, true);
             $table->integer('author_id', false, true);
             $table->integer('archive_id', false, true);
             $table->timestamps();
@@ -32,6 +33,8 @@ class CreatePostsTable extends Migration {
 				->onDelete('restrict')
 				->onUpdate('restrict');
         });
+
+        DB::statement('ALTER TABLE posts ADD FULLTEXT search(title, body)');
 
 	}
 

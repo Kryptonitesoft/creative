@@ -4,6 +4,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model {
 
+    protected $fillable = [
+        'title', 'body', 'comment_count', 'views', 'slug', 'author_id', 'archive_id', 'created_at', 'updated_at'
+    ];
+
     public function author(){
         return $this->belongsTo('App\Models\Teacher');
     }
@@ -13,7 +17,7 @@ class Post extends Model {
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function comments(){
-        return $this->hasMany('App/Models/Comment');
+        return $this->hasMany('App\Models\Comment');
     }
 
     /**
@@ -22,7 +26,7 @@ class Post extends Model {
      * pivot table name is 'category_post' laravel automatically detect
      */
     public function categories(){
-        return $this->belongsToMany('App/Models/Category');
+        return $this->belongsToMany('App\Models\Category');
     }
 
 

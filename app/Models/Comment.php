@@ -4,9 +4,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model {
 
+    protected $fillable = [
+        'name', 'email', 'body', 'post_id', 'created_at', 'updated_at'
+    ];
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     * comment belongs to a post, Inverse relation
      */
 	public function post(){
         return $this->belongsTo('App\Models\Post');

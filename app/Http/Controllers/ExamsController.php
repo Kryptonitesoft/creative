@@ -44,34 +44,29 @@ class ExamsController extends Controller {
 		return Redirect::route('exams.index')->with('message', 'Exam is listed');
 	}
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+    /**
+     * @param Exam $exam
+     * @return \Illuminate\View\View
+     */
 	public function show(Exam $exam)
 	{
 		return view('exams.show', compact('exam'));
 	}
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+    /**
+     * @param Exam $exam
+     * @return \Illuminate\View\View
+     */
 	public function edit(Exam $exam)
 	{
 		return view('exams.edit', compact('exam'));
 	}
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+    /**
+     * @param Exam $exam
+     * @param ExamRequest $request
+     * @return mixed
+     */
 	public function update(Exam $exam, ExamRequest $request)
 	{
 		$input = array_except($request->all(), '_method');
@@ -80,12 +75,11 @@ class ExamsController extends Controller {
         return Redirect::route('exams.index')->with('message', 'Exam successfully updated.');
 	}
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+    /**
+     * @param Exam $exam
+     * @return mixed
+     * @throws \Exception
+     */
 	public function destroy(Exam $exam)
 	{
 		$exam->delete();

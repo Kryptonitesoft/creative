@@ -1,8 +1,11 @@
 <?php
 
+//Model binding
 Route::model('files', 'App\Models\Fileentry');
 Route::model('exams', 'App\Models\Exam');
 Route::model('results', 'App\Models\Result');
+Route::model('blog', 'App\Models\Post');
+Route::model('comments', 'App\Models\Comment');
 
 Route::bind('files', function($value, $route){
 	return App\Models\Fileentry::whereFilename($value)->first();
@@ -14,6 +17,15 @@ Route::bind('exams', function($value, $route){
 
 Route::bind('results', function($value, $route){
 	return App\Models\Result::whereId($value)->first();
+});
+
+Route::bind('posts', function($value, $route){
+	return App\Models\Post::whereId($value)->first();
+});
+
+
+Route::bind('comments', function($value, $route){
+    return App\Models\Comment::whereId($value)->first();
 });
 
 
@@ -66,7 +78,8 @@ Route::resource('exams.results', 'ResultsController');
  * blog resource route
  */
 
-Route::resource('blog', 'BlogController');
+Route::resource('posts', 'PostsController');
+Route::resource('posts.comments', 'CommentsController');
 Route::get('blog/search', 'BlogController@search' );
 
 
