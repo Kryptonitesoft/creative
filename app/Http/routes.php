@@ -6,6 +6,7 @@ Route::model('exams', 'App\Models\Exam');
 Route::model('results', 'App\Models\Result');
 Route::model('blog', 'App\Models\Post');
 Route::model('comments', 'App\Models\Comment');
+Route::model('teachers', 'App\Models\Teacher');
 
 Route::bind('files', function($value, $route){
 	return App\Models\Fileentry::whereFilename($value)->first();
@@ -26,6 +27,10 @@ Route::bind('posts', function($value, $route){
 
 Route::bind('comments', function($value, $route){
     return App\Models\Comment::whereId($value)->first();
+});
+
+Route::bind('teachers', function($value, $route){
+    return App\Models\Teacher::whereId($value)->first();
 });
 
 
@@ -82,4 +87,6 @@ Route::resource('posts', 'PostsController');
 Route::resource('posts.comments', 'CommentsController');
 Route::get('blog/search', 'BlogController@search' );
 
+
+Route::resource('teachers', 'TeachersController');
 

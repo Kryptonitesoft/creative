@@ -4,8 +4,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Teacher extends Model {
 
+    protected $guarded = [];
+
     /**
-     * teacher has many post relation
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
 	public function posts(){
