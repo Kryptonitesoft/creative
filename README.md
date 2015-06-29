@@ -7,6 +7,7 @@
 * `install composer form https://getcomposer.org`
 * `git clone https://github.com/joynal/creative.git projectname`
 * `cd projectname`
+* `composer install`
 * `php artisan key:generate`
 *  create a database and inform *.env*
 * `php artisan migrate` to create tables
