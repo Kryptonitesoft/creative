@@ -17,14 +17,14 @@ class CreateTeachersTable extends Migration {
 			
             $table->increments('id');
             $table->string('name', 60);
-            $table->string('teaches', 100);
+            $table->string('designation', 30)->default("Teacher");
+            $table->string('teaches', 50);
             $table->string('education', 100);
-            $table->string('description', 300);
-            $table->string('image');
-            $table->string('email')->unique();
-            $table->string('fb');
-            $table->tinyInteger('phone', false, true, 11);
-            $table->string('cv');
+            $table->string('description', 300)->nullable();
+            $table->string('image', 300)->default("img/male.jpg");
+            $table->string('email', 100)->unique()->nullable();
+            $table->string('fb', 100)->unique()->nullable();
+            $table->integer('phone', false, true, 11)->unique()->nullable();
             $table->timestamps();
         });
 	}

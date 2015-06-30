@@ -1,4 +1,4 @@
-@extends('app')
+@extends('master')
 
 @section('content')
 <div class="container-fluid">
@@ -14,9 +14,9 @@
 					@endif
 
 					@if (count($errors) > 0)
-						<div class="alert alert-danger">
+						<div class="alert alert-danger" style="margin-bottom:10px;">
 							<strong>Whoops!</strong> There were some problems with your input.<br><br>
-							<ul>
+							<ul style="margin-left:20px">
 								@foreach ($errors->all() as $error)
 									<li>{{ $error }}</li>
 								@endforeach

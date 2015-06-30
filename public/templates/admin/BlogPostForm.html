@@ -1,0 +1,77 @@
+<div class="container-fluid">
+	<h2>{{post.title || 'Blog Post'}}</h2>
+	<div class="row resultView">
+		<div class="container-fluid">
+			<form class="form form-inline" ng-submit="save()">
+			    <div class="alert alert-danger col-md-9 col-sm-12" style="width:100%" ng-show="errors">
+			    	<strong>Whoops!</strong> Somthing went wrong!
+			    	<ul class="repeat-animation" style="margin-left:20px" ng-repeat="error in errors">
+			    		<li class="repeat-animation" ng-repeat="err in error">{{err}}</li>
+			    	</ul>
+			    </div>
+				<div class="form-group">
+					<label for="posttitle" class="first control-label">Title</label>
+					<input type="text" class="form-control" ng-model="post.title" id="posttitle" ng-required="true">
+				</div>
+
+				<div class="form-group">
+					<label for="author" class="control-label">Author</label>
+					<select name="" id="author" class="form-control" ng-model="post.author_id" ng-required="true">
+						<option value="">Author</option>
+						<option ng-repeat="author in authors" value="{{author.id}}" ng-selected="post.author_id==author.id">{{author.name}}</option>
+					</select>
+				</div>
+
+				<div class="form-group">
+					<label for="category" class="control-label">Category</label>
+					<select name="" id="category" class="form-control" ng-model="post.category_id" ng-required="true">
+						<option value="">Category</option>
+						<option ng-repeat="category in categories" value="{{category.id}}" ng-selected="post.category_id==category.id">{{category.name}}</option>
+					</select>
+				</div>
+
+				<div class="form-group">
+					<input type="submit" class="button form-control" value="Save">
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="blog">
+				<div class="blogEditor content" text-angular ng-model="post.body"></div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container-fluid" ng-hide="addMode">
+		<div class="row">
+			<div class="panel panel-default">
+				<div class="panel-heading" ng-click="showComments()">Comments</div>
+				<div class="panel-body" ng-hide="isCollapsed">
+					<div class="table">
+						<div class="tr header row">
+							<div class="td col-xs-3 leftAlign">Name</div>
+							<div class="td col-xs-4 leftAlign">Comment</div>
+							<div class="td col-xs-2 leftAlign">Email</div>
+							<div class="td col-xs-2 leftAlign">Date</div>
+							<div class="td col-xs-1"></div>
+						</div>
+						<div class="tr row  repeat-animation" ng-repeat="comment in comments">
+							<div class="td col-xs-3 leftAlign">{{comment.name}}</a></div>
+							<div class="td col-xs-4 leftAlign">{{comment.body}}</div>
+							<div class="td col-xs-2 leftAlign">{{comment.email}}</div>
+							<div class="td col-xs-2 leftAlign">{{comment.created_at | fixdate | date:'MMMM d, yyyy'}}</div>
+							<div class="td col-xs-1 leftAlign"><span class="dltbtn" ng-click="deleteComment($index)">X</span></div>
+						</div>
+					</div>
+					<div class="text-center">
+						<pagination boundary-links="true" total-items="pagination.total" ng-model="pagination.page" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;" items-per-page="pagination.itemPerPage" rotate="true" ng-click="setPage(pagination.page)" ng-hide="pagination.total<=pagination.itemPerPage" max-size="5"></pagination>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>

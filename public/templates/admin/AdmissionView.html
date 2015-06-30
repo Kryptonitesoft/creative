@@ -1,0 +1,32 @@
+<div class="container-fluid">
+	<h2>Admission Requests</h2>
+	
+	<p ng-hide="admissions.length" class="notFound">No admission application yet!</p>
+
+	<form action="" class="search form form-inline" ng-show="admissions.length">
+		<div class="form-group">
+			<label for="search" class="first control-label">Search</label>
+			<input id="search" type="search" class="form-control" ng-model="search.name">
+		</div>
+	</form>
+	<div class="container-fluid" ng-show="admissions.length">
+		<div class="table">
+			<div class="tr header row">
+				<div class="td col-xs-2 leftAlign">Name</div>
+				<div class="td col-xs-1">Sex</div>
+				<div class="td col-xs-5 leftAlign">School Name</div>
+				<div class="td col-xs-1">Class</div>
+				<div class="td col-xs-2">Phone No.</div>
+				<div class="td col-xs-1"></div>
+			</div>
+			<div class="tr row repeat-animation" ng-repeat="admission in admissions | filter:search">
+				<div class="td col-xs-2 leftAlign"><a href="#/admissions/{{admission.id}}">{{admission.name}}</a></div>
+				<div class="td col-xs-1">{{admission.sex}}</div>
+				<div class="td col-xs-5 leftAlign">{{admission.schools_name}}</div>
+				<div class="td col-xs-1">{{admission.class}}</div>
+				<div class="td col-xs-2 ">{{admission.phone | phone}}</div>
+				<div class="td col-xs-1"><span class="dltbtn" ng-click="destroy($index)">X</span></div>
+			</div>
+		</div>
+	</div>
+</div>

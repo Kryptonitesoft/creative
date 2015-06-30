@@ -1,0 +1,51 @@
+<div class="container-fluid">
+	<h2>{{pageTitle}}</h2>
+	<div class="row buttonBar" ng-controller="ButtonBarController">
+		<div class="col-sm-6 left">
+			<a href="#files/add"><span class="icon icon-add-circle"   ng-click=""></span></a>
+			<span class="icon icon-edit-circle"  ng-click="gotoEdit()"></span>
+			<span class="icon icon-lock-circle"  ng-click="changeVisibility()"></span>
+			<span class="icon icon-delete-circle"ng-click="delete()"></span>
+			<span ng-show="selectedCount">{{selectedCount}} item<span ng-show="selectedCount>1">s</span> Selected</span>
+		</div>
+		<div class="col-sm-6 right">
+			<div style="display:inline" ng-hide="true">	
+				<span class="icon icon-grid9"></span>
+				<span class="icon icon-list" ></span>
+				<span class="icon icon-grid4"></span>
+			</div>
+			<div class="sortBox">
+				<span ng-class="{active: config.orderBy=='title'}" class="sortBtn" ng-click="setOrderBy('title')">Name 
+				<span ng-show="config.orderBy=='title'" class="caret" ng-class="{rotate: config.isReverse}"></span></span>
+				<span ng-class="{active: config.orderBy=='size'}" class="sortBtn" ng-click="setOrderBy('size')">Size 
+				<span ng-show="config.orderBy=='size'" class="caret" ng-class="{rotate: config.isReverse}"></span></span>
+				<span ng-class="{active: config.orderBy=='views'}" class="sortBtn" ng-click="setOrderBy('views')">Views 
+				<span ng-show="config.orderBy=='views'" class="caret" ng-class="{rotate: config.isReverse}"></span></span>
+				<span ng-class="{active: config.orderBy=='created_at'}" class="sortBtn" ng-click="setOrderBy('created_at')">Uploaded 
+				<span ng-show="config.orderBy=='created_at'" class="caret" ng-class="{rotate: config.isReverse}"></span></span>
+			</div>
+		</div>
+	</div>
+
+	<p ng-hide="pagination.total" class="notFound">You haven't uploaded anything yet.</p>
+
+	<div class="row overview gallery tiles">
+		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6 col-vs-12 repeat-animation" ng-repeat="fileEntry in fileEntries">
+			<figure  ng-class="{active: isSelected($index)}" ng-click="select($index)" ng-dblclick="open($index, fileEntry.id)">
+				<div class="preview" >
+         			<span ng-hide="fileEntry.isVisible" class="icon-lock-circle"></span>
+					<img ng-src="{{fileEntry.link | thumbnail}}" alt="{{fileEntry.title}}">
+        			<div ng-show="fileEntry.type=='video'"><span class="icon-play-circle"></span></div>
+    			<div ng-show="fileEntry.type!='video'&&fileEntry.type!='image'"><span class="icon icon-{{fileEntry.type | icon}}"></span></div>
+        		</div>
+				<figcaption class="title">{{fileEntry.title | limitTo:20}}</figcaption>
+				<figcaption ng-show="config.orderBy=='size'">{{fileEntry.size | size | number:2 }} {{fileEntry.size | sizeType }}</figcaption>
+				<figcaption ng-show="config.orderBy=='views'">{{fileEntry.views | limitTo:10}} Hits</figcaption>
+				<figcaption ng-show="config.orderBy=='created_at' || config.orderBy=='title'">{{fileEntry.created_at | ago}}</figcaption>
+			</figure>
+		</div>
+	</div>
+	<div class="container-fluid text-center">
+		<pagination boundary-links="true" total-items="pagination.total" ng-model="pagination.page" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;" items-per-page="pagination.itemPerPage" rotate="true" ng-click="setPage(pagination.page)" ng-show="pagination.total>pagination.itemPerPage" max-size="5"></pagination>
+	</div>
+</div>

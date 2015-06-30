@@ -1,0 +1,34 @@
+<div class="container-fluid">
+	<h2>Exams</h2>
+	
+	<p ng-hide="pagination.total" class="notFound">You haven't published any results yet!</p>
+
+	<div class="resultView" ng-show="exams.length">
+		<div class="container-fluid">
+			<form action="" class="form-inline">
+				<div class="table">
+					<div class="tr header row">
+						<div class="td col-xs-1">S.N.</div>
+						<div class="td col-xs-4 leftAlign">Exam Title</div>
+						<div class="td col-xs-2 leftAlign">Subject</div>
+						<div class="td col-xs-1">Class</div>
+						<div class="td col-xs-3">Date</div>
+						<div class="td col-xs-1"></div>
+					</div>
+					<div class="tr row repeat-animation" ng-repeat="exam in exams">
+						<div class="td col-xs-1">{{$index+1}}</div>
+						<div class="td col-xs-4 leftAlign"><a href="#/exams/{{exam.id}}/results/">{{exam.title}}</a></div>
+						<div class="td col-xs-2 leftAlign">{{exam.subject}}</div>
+						<div class="td col-xs-1">{{exam.class}}</div>
+						<div class="td col-xs-3 ">{{exam.date | fixdate | date:'MMMM d, yyyy'}}</div>
+						<div class="td col-xs-1"><span class="dltbtn" ng-click="delete($index)">X</span></div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="container-fluid text-center">
+		<pagination boundary-links="true" total-items="pagination.total" ng-model="pagination.page" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;" items-per-page="pagination.itemPerPage" rotate="true" ng-click="setPage(pagination.page)" ng-show="pagination.total>pagination.itemPerPage" max-size="5"></pagination>
+	</div>
+	<a href="#exams/add" class="btn button" ng-show="exams.length">Add</a>
+</div>

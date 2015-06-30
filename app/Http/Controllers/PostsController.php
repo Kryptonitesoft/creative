@@ -1,9 +1,15 @@
 <?php namespace App\Http\Controllers;
 
+use Auth;
+use Input;
 use Redirect;
 use App\Models\Post;
-use App\Http\Requests\PostRequest;
 use App\Http\Requests;
+use App\Models\Teacher;
+use App\Models\Archive;
+use App\Models\Category;
+use App\Models\CategoryPost;
+use App\Http\Requests\PostRequest;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
@@ -17,19 +23,18 @@ class PostsController extends Controller {
      */
     public function index()
     {
-        $posts = Post::all();
-
-        return view('posts.index', compact('posts'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        return view('posts.create');
+        $posts = Post::paginate(Input::get('itemPerPage'));
+        foreach($posts as $post) {
+            $post = array_except($post, array("body"));
+            $teacher  = Teacher::find($post->author_id);
+            $category_id = CategoryPost::wherePost_id($post->id)->first()->category_id;
+            $category = Category::find($category_id)->name;
+            $post['category_id'] = $category_id;
+            $post['category'   ] = $category;
+            $post['author'     ] = $teacher->name;
+            $post['fb'         ] = $teacher->fb  ;
+        }
+        return $posts;
     }
 
     /**
@@ -39,16 +44,21 @@ class PostsController extends Controller {
      */
     public function store(PostRequest $request)
     {
-        $post = new Post;
-
-        $post->title = $request->get('title');
-        $post->body = $request->get('body');
-        $post->slug = str_slug($post->title);
-        $post->author_id = 1;
-        $post->archive_id = 1;
-        $post->save();
-
-        return Redirect::route('posts.index')->with('message', 'Successfully post created');
+        $post = $request->all();
+        $archive = Archive::whereYearAndMonth(date("Y"), date("n"))->first();
+        if($archive) {
+            $post['archive_id'] = $archive->id;
+        } else {
+            $newArchive = Archive::create(['year'=>date("Y"), 'month'=>date("n")]);
+            $post['archive_id'] = $newArchive->id;
+        }
+        $post['slug'] = str_slug($post['title']);
+        
+        $post = Post::create($post);
+        CategoryPost::create([
+            'category_id' => $request->get("category_id"),
+            'post_id' => $post->id
+        ]);
     }
 
     /**
@@ -57,16 +67,15 @@ class PostsController extends Controller {
      */
     public function show(Post $post)
     {
-        return view('posts.show', compact('post'));
-    }
-
-    /**
-     * @param Post $post
-     * @return \Illuminate\View\View
-     */
-    public function edit(Post $post)
-    {
-        return view('posts.edit', compact('post'));
+        $teacher = Teacher::find($post->author_id);
+        $category_id = CategoryPost::wherePost_id($post->id)->first()->category_id;
+        $category = Category::find($category_id)->name;
+        $post['category_id'] = $category_id;
+        $post['category'   ] = $category;
+        $post['author'     ] = $teacher->name;
+        $post['fb'         ] = $teacher->fb  ;
+        if(!Auth::user()) $post->increment('views');
+        return $post;
     }
 
     /**
@@ -74,10 +83,7 @@ class PostsController extends Controller {
      */
     public function update(Post $post, PostRequest $request)
     {
-        $input = array_except($request->all(), '_method');
-        $post->update($input);
-
-        return Redirect::route('posts.show', $post->id)->with('message', 'Post successfully updated.');
+        $post->update($request->all());
     }
 
     /**
@@ -88,9 +94,13 @@ class PostsController extends Controller {
      */
     public function destroy(Post $post)
     {
-        $post->delete();
-
-        return Redirect::route('posts.index')->with('message', 'Post deleted');
+        $posts = Post::where('archive_id', $post->archive_id)->get();
+        if(sizeof($posts) <= 1) {
+            $post->delete();
+            Archive::find($post->archive_id)->delete();
+        } else {
+            $post->delete();
+        }
     }
 
 }

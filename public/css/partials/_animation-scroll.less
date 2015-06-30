@@ -1,0 +1,35 @@
+@-webkit-keyframes rotateX { from { transform: rotateX(90deg); } to { transform: rotateX(0deg); } };
+   @-moz-keyframes rotateX { from { transform: rotateX(90deg); } to { transform: rotateX(0deg); } };
+        @keyframes rotateX { from { transform: rotateX(90deg); } to { transform: rotateX(0deg); } };
+
+.rotateX {
+	animation: rotateX 1s ease-in forwards,
+			    fadeIn 1s ease-in forwards;
+}
+
+@media only screen and (min-width:768px){
+	body.scroll {
+		padding-top: 50px;
+	}
+	nav[role=primary].scroll {
+		transition: 0.5s all ease-in-out;
+		background: rgba(255, 255, 255, 0.90);
+		.navbar-brand {
+			transition: 0.5s height ease-in-out, 0.5s padding ease-in-out, 0.5s line-height ease-in-out;
+			height: 50px;
+			padding-top: 0px;
+			line-height: 50px;
+			.icon-logo {
+				font-size: 1.2em;
+			}
+		}
+		.navbar-nav {
+			a {
+				transition: 0.5s all ease-in-out, .3s background ease-in, .3s color ease-in;
+				line-height: 50px;
+				height: 50px;
+				padding: 0px 30px;
+			}
+		}
+	}
+}

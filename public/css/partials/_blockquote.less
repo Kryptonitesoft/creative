@@ -1,0 +1,23 @@
+blockquote {
+	font-family: @font3;
+	font-size: 1.000em;
+	color: @theme_color;
+	border: none;
+	display: inline-block;
+	margin-left: 10%;
+	&::before, &::after {
+		font-family: "icomoon";
+		content: "\e606";
+		font-size: 1.750em;
+		display: block;
+	}
+	&::before {
+		margin-left: -35px;
+		margin-bottom: -23px;
+	}
+	&::after {
+		transform: rotate(180deg);
+		margin-right: -34px;
+		margin-top: -23px;
+	}
+}

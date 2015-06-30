@@ -23,7 +23,7 @@ class ResultRequest extends Request {
 	{
 		return [
             'sroll' => 'required|numeric',
-            'name'  => 'required',
+            'name'  => 'required|max:40',
             'mark'  => 'required|numeric'
 		];
 	}

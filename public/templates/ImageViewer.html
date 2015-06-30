@@ -1,0 +1,17 @@
+<div id="imageViewer" class="imageViewer" ng-keydown="controls($event)" tabindex="0">
+    <div class="modal-header">
+        {{fileEntry.title}}
+        <div class="controls">
+			<span ng-click="prev()" class="icon-left-circle"></span>&nbsp
+			<span ng-click="next()" class="icon-right-circle"></span>
+		</div>
+    </div>
+    <div class="modal-body">
+    	<img ng-src="{{fileEntry.link}}" ng-show="fileEntry.type=='image'">
+    	<iframe width="100%" height="360" ng-src="{{fileEntry.link | videolink}}" frameborder="0" allowfullscreen ng-show="fileEntry.type=='video'"></iframe>
+    </div>
+    <div class="modal-footer">
+    	<div class="uploaded">Uploaded: {{fileEntry.created_at | ago}}</div>
+    	<div class="description">{{fileEntry.description | limitTo:300}}</div>
+    </div>
+</div>

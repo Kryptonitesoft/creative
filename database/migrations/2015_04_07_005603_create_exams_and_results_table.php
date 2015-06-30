@@ -16,9 +16,9 @@ class CreateExamsAndResultsTable extends Migration {
 			$table->engine = 'InnoDB';
 			
             $table->increments('id');
-            $table->string('title', 100);
-            $table->string('subject', 10);
-            $table->string('class', 10);
+            $table->string('title', 50);
+            $table->string('subject', 30);
+            $table->tinyInteger('class', false, true, 2)->unsigned();
             $table->tinyInteger('mark_range', false, true, 3)->unsigned();
             $table->dateTime('date');
             $table->timestamps();
@@ -32,7 +32,6 @@ class CreateExamsAndResultsTable extends Migration {
             $table->tinyInteger('sroll', false, true)->length(3);
             $table->string('name', 40);
             $table->tinyInteger('mark', false, true)->length(3);
-            $table->float('gpa');
             $table->integer('exam_id', false, true);
             $table->timestamps();
 

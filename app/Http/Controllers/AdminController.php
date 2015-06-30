@@ -1,84 +1,66 @@
 <?php namespace App\Http\Controllers;
 
-use App\Http\Requests;
+use Hash;
+use App\Models\User;
+use App\Http\Requests\PasswordRequest;
 use App\Http\Controllers\Controller;
-
-use Illuminate\Http\Request;
+use \RecursiveIteratorIterator;
+use \RecursiveArrayIterator;
+use \RecursiveDirectoryIterator;
 
 class AdminController extends Controller {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
+    public function index() {
+        return view("admin.dashboard");
+    }
+
+	public function update(PasswordRequest $request)
 	{
-		//
+		extract($request->all());
+		$user = User::find(1);
+		if(Hash::check($old_password, $user->password)) {
+			$user->password = bcrypt($new_password);
+			$user->save();
+			return "true";
+		} else {
+			return "false";
+		}
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
+	public function getInfo() {
+		$info["filepass"] = file_get_contents("../filepassword");
+		$info["tempsize"] = Self::getFolderSize("fileStorage/temp/");
+		return $info;
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
+	public function changeFilePassword($pass = ""){
+		if(!$pass) {
+			$characters = 'abcdefghijklmnopqrstuvwxyz';
+			$charactersLength = strlen($characters);
+			$pass = '';
+			for ($i = 0; $i < 8; $i++) {
+			    $pass .= $characters[rand(0, $charactersLength - 1)];
+			}
+		}
+		file_put_contents('../filepassword', $pass);
+		return $pass;
 	}
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
+	public function clearTemp() {
+		$files = glob('fileStorage/temp/*');
+		foreach($files as $file){
+  		if(is_file($file))
+    		unlink($file);
+		}
+		return Self::getFolderSize("fileStorage/temp/");
 	}
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
+	public static function getFolderSize($folderName) {
+		$bytes = 0;
+		$iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($folderName));
+		foreach ($iterator as $i) {
+		  $bytes += $i->getSize();
+		}
+		return $bytes;
 	}
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
-
 }

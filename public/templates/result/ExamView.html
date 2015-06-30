@@ -1,0 +1,25 @@
+<div class="resultView">
+	<h2 class="pageTitle insideView">Results</h2>
+
+	<p ng-hide="pagination.total" class="notFound">Sorry! No results published yet.</p>
+	
+	<div class="table" ng-show="exams.length">
+		<div class="tr header row">
+			<div class="td col-xs-1">S.N.</div>
+			<div class="td col-xs-4 leftAlign">Exam Title</div>
+			<div class="td col-xs-2 leftAlign">Subject</div>
+			<div class="td col-xs-2">Class</div>
+			<div class="td col-xs-3 leftAlign">Date</div>
+		</div>
+		<div class="tr row repeat-animation" ng-repeat="exam in exams">
+			<div class="td col-xs-1">{{$index+1}}</div>
+			<div class="td col-xs-4 leftAlign"><a href="#/{{exam.id}}">{{exam.title}}</a></div>
+			<div class="td col-xs-2 leftAlign">{{exam.subject}}</div>
+			<div class="td col-xs-2">{{exam.class | class}}</div>
+			<div class="td col-xs-3 leftAlign">{{exam.date | fixdate | date:'MMMM d, yyyy'}}</div>
+		</div>
+	</div>
+	<div class="container-fluid text-center">
+		<pagination boundary-links="true" total-items="pagination.total" ng-model="pagination.page" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;" items-per-page="pagination.itemPerPage" rotate="true" ng-click="setPage(pagination.page)" ng-show="pagination.total>pagination.itemPerPage" max-size="5"></pagination>
+	</div>
+</div>

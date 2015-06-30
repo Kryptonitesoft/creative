@@ -1,0 +1,19 @@
+.pagination {
+	margin: 10px auto;
+	text-align: right;
+	li a, li span  {
+		color: @color3;
+		&:hover {
+			color: @theme_color;
+		}
+	}
+	.active>a,
+	.active>a:focus,
+	.active>a:hover,
+	.active>span,
+	.active>span:focus,
+	.active>span:hover {
+		background: @theme_color;
+		border-color: @theme_color;
+	}
+}

@@ -1,0 +1,54 @@
+.imageViewer {
+	z-index: 2000;
+	.disableSelection;
+	.modal-header {
+		color: @theme_color;
+		font-family: @font2;
+		font-size: 1.125em;
+		padding: 5px;
+		padding-left: 10px;
+		.controls {
+			position: absolute;
+			top: 5px;
+			right: 10px;
+		}
+		.icon-left-circle, .icon-right-circle {
+			transition: 0.3s color ease-in-out;
+			color: rgba(255, 255, 255, 1);
+			font-size: 1em;
+			display: inline;
+			color: @color1;	
+			&:hover { color: @theme_color; cursor: pointer; }
+		}
+		.icon-left-circle  { left : 10px; }
+		.icon-right-circle { right: 10px; }
+	}
+
+	.modal-body {
+		position: relative;
+		border: none;
+		padding: 0px;
+		img {
+			width: 100%;
+		}
+	}
+
+	.modal-footer {
+		text-align: left;
+		border: none;
+		.uploaded {
+			font-family: @font4;
+			font-size: 0.875em;
+			color: @color3;
+		}
+		.description {
+			padding-top: 10px;
+			font-family: @font4;
+			font-size: 0.875em;
+			color: @color2;	
+		}
+	}
+	&:focus {
+		outline: 0px;
+	}
+}

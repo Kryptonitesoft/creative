@@ -1,0 +1,83 @@
+.documents {
+	.tile {
+		position: relative;
+		margin: 10px 0;
+		.icon {
+			line-height: 150px;
+			text-align: center;
+			font-size: 4.000em;
+			display: block;
+			margin: 0 auto;
+			height: 150px;
+			width: 100%;
+		}
+		.title {
+			font-family: @font7;
+			position: absolute;
+			font-size: 0.750em;
+			display: block;
+			color: @white;
+			bottom: 5px;
+			left: 10px;
+		}
+		.icon-download {
+			background: rgba(0, 0, 0, 0.7);
+			transition: 0.3s all ease-in;
+			position: absolute;
+			opacity: 0;
+			top: 0;
+			left: 0;
+		}
+		&:hover .icon-download {
+			opacity: 1;
+			color: @color3;
+			cursor: pointer;
+		}
+	}
+}
+
+.icon-word {
+	color: #265490;
+	background: #4f80ba;
+}
+
+.icon-excel {
+	color: #2a6746;
+	background: #3a875d;
+}
+
+.icon-powerpoint {
+	color: #c1451f;
+	background: #dd6845;
+}
+
+.icon-ebook {
+	color: #ee8100;
+	background: #d34f1f;
+}
+
+.documentsModal {
+	.modal-header,
+	.modal-body,
+	.modal-footer {
+		border: none;
+		padding: 10px;
+	}
+	.modal-header {
+		background: @theme_color;
+		font-family: @font2;
+		font-size: 0.875em;
+		color: @white;
+		border-radius: 5px 5px 0px 0px;
+	}
+	.modal-footer {
+		.btn {
+			font-family: @font3;
+			font-size: 0.875em;
+			&:focus {
+				color: @white;
+				outline: 0;
+			}
+		}
+	}
+}

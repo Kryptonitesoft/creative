@@ -1,0 +1,144 @@
+<div class="container-fluid hideForPrint">
+	<h2>Results</h2>
+	<div class="row resultView">
+		<div class="container-fluid">
+			<form class="form form-inline">
+				<div class="form-group">
+					<label for="xmtitle" class="first control-label">Exam Title</label>
+					<input type="text" class="form-control" ng-model="exam.title" id="xmtitle">
+				</div>
+
+				<div class="form-group">
+					<label for="xmsub" class="control-label">Subject</label>
+					<select name="" id="xmsub" class="form-control" ng-model="exam.subject">
+						<option ng-repeat="subject in ['Accounting', 'Bangla', 'BGS', 'Biology', 'Chemistry', 'English', 'Finance and Banking', 'General Science', 'ICT', 'Introduction to Business', 'Mathematics', 'Physics']" value="{{subject}}">{{subject}}</option>
+					</select>
+				</div>
+				
+				<div class="form-group">
+					<label for="xmclass" class="control-label">Class</label>
+					<select name="" id="xmclass" class="form-control" ng-model="exam.class">
+						<option ng-repeat="class in [[5, 'V'], [6, 'VI'], [7, 'VII'], [8, 'VIII'], [9, 'IX'], [10, 'X'], [11, 'XI'], [12, 'XII']]" value="{{class[0]}}">{{class[1]}}</option>
+					</select>
+				</div>
+				
+				<div class="form-group">
+					<label for="xmmarkrange" class="control-label">Mark Range</label>
+					<input type="text" class="form-control xmmarkrange" ng-model="exam.mark_range" id="xmmarkrange">
+				</div>
+
+				<div class="form-group">
+					<label for="xmdate" class="control-label">Date</label>
+					<input type="date" class="form-control" ng-model="exam.date" placeholder="Date" />
+				</div>
+			</form>
+		</div>
+
+		<div class="container-fluid" style="margin:0px 15px">
+			<div class="form table">
+				<div class="tr header row">
+					<div class="td col-xs-2"><span class="hover" ng-click="sort('sroll')">Roll</span> <span ng-show="sortBy=='sroll'" class="caret" ng-class="{rotate: isReverse}"></span></div>
+					<div class="td col-xs-4 leftAlign"><span class="hover" ng-click="sort('name')">Name</span> <span ng-show="sortBy=='name'" class="caret" ng-class="{rotate: isReverse}"></span></div>
+					<div class="td col-xs-2"><span class="hover" ng-click="sort('mark')">Mark</span> <span ng-show="sortBy=='mark'" class="caret" ng-class="{rotate: isReverse}"></span></div>
+					<div class="td col-xs-2">G.P.</div>
+					<div class="td col-xs-2">Options</div>
+				</div>
+				<div class="tr row repeat-animation" ng-repeat="result in results">
+					<form action="" ng-submit="updateResult($index)">
+					<div class="td col-xs-2" ng-hide="editMode==$index">{{result.sroll}}</div>
+					<div class="td col-xs-2" ng-show="editMode==$index"><input type="text" class="hiddenInput" ng-model="result.sroll"></div>
+					<div class="td col-xs-4 leftAlign" ng-hide="editMode==$index">{{result.name}}</div>
+					<div class="td col-xs-4 leftAlign" ng-show="editMode==$index"><input type="text" class="hiddenInput" ng-model="result.name"></div>
+					<div class="td col-xs-2" ng-hide="editMode==$index">{{result.mark}}</div>
+					<div class="td col-xs-2" ng-show="editMode==$index"><input type="text" class="hiddenInput" ng-model="result.mark"></div>
+					<div class="td col-xs-2">{{result.mark | gp:exam.mark_range | number:2}}</div>
+					<div class="td col-xs-2">
+						<span class="dltbtn" ng-click="enableEdit($index)" ng-hide="editMode==$index">Edit</span>
+						<span class="dltbtn" ng-click="updateResult($index)" ng-show="editMode==$index">Save</span>
+						<span class="dltbtn" ng-click="delete($index)">Delete</span>
+						<input type="submit" hidden>
+					</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<div class="container-fluid">
+			<form class="form form-inline" ng-submit="create()">
+				<div class="alert alert-danger col-md-9 col-sm-12" style="margin:0px; width:100%" ng-show="errors">
+		            <strong>Whoops!</strong> Somthing went wrong!
+		            <ul class="repeat-animation" style="margin-left:20px" ng-repeat="error in errors">
+		            	<li class="repeat-animation" ng-repeat="err in error">{{err}}</li>
+		            </ul>
+		        </div>
+				<div class="form-group">
+					<input type="text" class="form-control" placeholder="Roll" ng-model="student.sroll" ng-required="true">
+				</div>
+				<div class="form-group">
+					<input type="text" class="form-control" placeholder="Name" ng-model="student.name">
+				</div>
+				<div class="form-group">
+					<input type="text" class="form-control" placeholder="Mark" ng-model="student.mark">
+				</div>
+				<div class="form-group">
+					<input type="submit" class="form-control button" value="Add">
+				</div>
+			</form>
+		</div>
+	</div>
+	<span class="btn button" ng-click="updateExam()">Update</span>
+	<span class="btn button" ng-click="print()">Print</span>
+</div>
+
+<div class="container-fluid printPreview showForPrint">
+	<div class="row">
+		<div class="col-xs-3 logo">
+			<img ng-src="../img/logo.png" alt="">
+		</div>
+		<div class="col-xs-6 heading">
+			<h2>Creative Coaching</h2>
+			<p>House # 25 [Ground Floor], Road # 11, Sector # 06, Uttara, Dhaka–1230</p>
+			<p>Phone: <span class="tel">01731-587382</span>, <span class="tel">01714-535536</span></p>
+			<p>eMail: <span class="email">email@creativecoaching.com.bd</span></p>
+		</div>
+		<div class="col-xs-3">
+		</div>
+	</div>
+
+	<div class="row" style="margin-top:20px">
+		<div class="col-xs-6">
+			<div>Exam: {{exam.title}}</div>
+			<div>Subject: {{exam.subject}}</div>
+		</div>
+		<div class="col-xs-3">
+			<div>Class: {{exam.class}}</div>
+			<div>Total Marks: {{exam.mark_range}}</div>
+		</div>
+		<div class="col-xs-3">
+			<div>{{exam.date | fixdate | date:"MMMM dd, yyyy"}}</div>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-xs-12">
+			<h3 class="title">Result</h3>
+		</div>
+	</div>
+
+	<div class="container-fluid" style="margin:0px 15px">
+		<div class="form table">
+			<div class="tr header row">
+				<div class="td col-xs-2">Roll</div>
+				<div class="td col-xs-4 leftAlign">Name</div>
+				<div class="td col-xs-3">Mark</div>
+				<div class="td col-xs-3">G.P.</div>
+			</div>
+			<div class="tr row" ng-repeat="result in results">
+				<div class="td col-xs-2">{{result.sroll}}</div>
+				<div class="td col-xs-4 leftAlign">{{result.name}}</div>
+				<div class="td col-xs-3">{{result.mark}}</div>
+				<div class="td col-xs-3">{{result.mark | gp:exam.mark_range | number:2}}</div>
+			</div>
+		</div>
+	</div>
+</div>

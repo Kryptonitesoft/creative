@@ -18,8 +18,7 @@ class ExamsController extends Controller {
 	 */
 	public function index()
 	{
-		$exams = Exam::all();
-		return view('exams.index', compact('exams'));
+		return Exam::orderBy("date", "desc")->paginate(Input::get("itemPerPage"));
 	}
 
 	/**
@@ -29,9 +28,7 @@ class ExamsController extends Controller {
 	 */
 	public function store(ExamRequest $request)
 	{
-		Exam::create($request->all());
-
-		return Redirect::route('exams.index')->with('message', 'Exam is listed');
+		return Exam::create($request->all())->toJson();
 	}
 
     /**
@@ -40,16 +37,7 @@ class ExamsController extends Controller {
      */
 	public function show(Exam $exam)
 	{
-		return view('exams.show', compact('exam'));
-	}
-
-    /**
-     * @param Exam $exam
-     * @return \Illuminate\View\View
-     */
-	public function edit(Exam $exam)
-	{
-		return view('exams.edit', compact('exam'));
+		return $exam;
 	}
 
     /**
@@ -59,10 +47,7 @@ class ExamsController extends Controller {
      */
 	public function update(Exam $exam, ExamRequest $request)
 	{
-		$input = array_except($request->all(), '_method');
-        $exam->update($input);
-
-        return Redirect::route('exams.index')->with('message', 'Exam successfully updated.');
+        $exam->update($request->all());
 	}
 
     /**
@@ -73,8 +58,6 @@ class ExamsController extends Controller {
 	public function destroy(Exam $exam)
 	{
 		$exam->delete();
-
-        return Redirect::route('exams.index')->with('message', 'Successfully exam record deleted');
 	}
 
 }

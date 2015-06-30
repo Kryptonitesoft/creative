@@ -12,7 +12,9 @@ use Symfony\Component\HttpFoundation\Tests\RedirectResponseTest;
 
 class ResultsController extends Controller {
 
-
+	public function index(Exam $exam){
+		return Result::where('exam_id', $exam->id)->orderBy('sroll', 'asc')->get()->toJson();
+	}
 	/**
 	 * Store a newly created resource in storage.
 	 *
@@ -23,25 +25,12 @@ class ResultsController extends Controller {
         $input = $request->all();
         $input['exam_id'] = $exam->id;
 
-        //dd($input);
-
-        Result::create($input);
-
-        return Redirect::route('exams.show', $exam->id)->with('message', 'Result successfully added.');
+        return Result::create($input)->toJson();
 	}
 
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit(Exam $exam, Result $result)
-	{
-		return view('results.edit', compact('exam', 'result'));
+	public function show(Exam $exam, Result $result) {
+		return $result;
 	}
-
 	/**
 	 * Update the specified resource in storage.
 	 *
@@ -51,8 +40,6 @@ class ResultsController extends Controller {
 	public function update(ResultRequest $request, Exam $exam, Result $result)
 	{
 		$result->update($request->all());
-
-        return Redirect::route('exams.show', $exam->id)->with('message', 'Successfully result updated');
 	}
 
 	/**
@@ -64,8 +51,6 @@ class ResultsController extends Controller {
 	public function destroy(Exam $exam, Result $result)
 	{
 		$result->delete();
-
-        return Redirect::route('exams.show', $exam->id)->with('message', 'Successfully record deleted.');
 	}
 
 }

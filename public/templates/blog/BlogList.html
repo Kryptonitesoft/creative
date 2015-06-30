@@ -1,0 +1,21 @@
+<h2>Blogs</h2>
+
+<p ng-hide="pagination.total" class="notFound">Sorry! No posts published yet.</p>
+
+<div class="blogList">
+	<div class="row blogEntry repeat-animation" ng-repeat="post in posts">
+		<div class="left col-sm-3 col-xs-4"><a href="#/{{post.id}}#blogTitle"><span class="icon-{{post.category | lowercase | removews  }}"></span></a></div>
+		<div class="right col-sm-9 col-xs-8">
+			<a href="#/{{post.id}}#blogTitle"><h3 class="blogTitle">{{ post.title }}</h3></a>
+			<div class="blogAuthor">By <a href="{{post.fb}}"><span class="author">{{ post.author }}</span></a></div>
+			<ul class="stat">
+				<li><span class="icon-clock"        ></span> {{ post.created_at | fixdate | date:'MMM d, yyyy' }}</li>
+				<a ng-href="#category/{{post.category_id}}"><li><span class="icon-double-circle"></span> {{ post.category }}</li></a>
+				<li><span class="icon-comments"     ></span> {{ post.comment_count }} Comments</li>
+			</ul>
+		</div>
+	</div>
+	<div class="container-fluid text-center">
+		<pagination boundary-links="true" total-items="pagination.total" ng-model="pagination.page" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;" items-per-page="pagination.itemPerPage" rotate="true" ng-click="setPage(pagination.page)" ng-show="pagination.total>pagination.itemPerPage" max-size="5"></pagination>
+	</div>
+</div>

@@ -1,16 +1,18 @@
 <?php namespace App\Http\Controllers;
 
-use App\Models\Fileentry;
-use App\Http\Requests;
-use App\Http\Requests\FileRequest;
-use App\Http\Requests\FileEditRequest;
-use App\Http\Controllers\Controller;
-
 use Request;
+use App\Http\Requests;
+use App\Models\Fileentry;
+use App\Http\Requests\FileRequest;
+use App\Http\Requests\FileUploadRequest;
+use App\Http\Controllers\Controller;
+use Intervention\Image\ImageManager;
+
+use Auth;
 use Redirect;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\File;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class FileEntryController extends Controller {
 
@@ -21,11 +23,27 @@ class FileEntryController extends Controller {
 	 */
 	public function index()
 	{
-		$entries = Fileentry::all();
-
-		return view('files.index', compact('entries'));
+		extract(Request::all());
+		$isReverse = ($isReverse == 'true') ? 'desc' : 'asc';
+		
+		if($type == 'media') {
+			$entries = Fileentry::where('type', '!=', 'document')
+								->where('type', '!=', 'presentation')
+								->where('type', '!=', 'ebook');
+		} elseif($type == 'file') {
+			$entries = Fileentry::where('type', '!=', 'image')
+								->where('type', '!=', 'video')
+								->exclude(['link']);
+		} elseif($type != '') {
+			$entries = Fileentry::whereType($type);
+		} else {
+			$entries = new Fileentry;
+		}
+		
+		if(!Auth::user() || Request::has("isVisible"))
+			$entries = $entries->whereIsvisible(1);
+	 	return $entries->orderBy($orderBy, $isReverse)->paginate($itemPerPage);
 	}
-
 
 	/**
 	 * Store a newly created resource in storage.
@@ -34,22 +52,22 @@ class FileEntryController extends Controller {
 	 */
 	public function store(FileRequest $request)
 	{
+		$entry = array_except($request->all(), array('fileName'));
 
-
-		$file = $request->file('filefield');
-		$extension = $file->getClientOriginalExtension();
-		Storage::disk('local')->put($file->getFilename() . '.' . $extension, File::get($file));
-		$entry = new Fileentry();
-		$entry->filename = $file->getFilename();
-		$entry->mime = $file->getClientMimeType();
-		$entry->extension = $extension;
-		$entry->type = $request->get('type');
-		$entry->title = $request->get('title');
-		$entry->size = $file->getClientSize();
-
-		$entry->save();
-
-		return Redirect::route('files.index')->with('message', 'Project created');
+		if($entry['type'] != 'video') {
+			$filename = $request->get("fileName");
+			$src = 'fileStorage/temp/' . $filename;
+	  		$des = 'fileStorage/' . $entry['type'] . 's/' . $filename;
+	  		rename($src, $des);
+			$entry['link'] = $des;
+			$entry['size'] = filesize($des);
+			if($entry['type'] == 'image') {
+				$manager = new ImageManager(array('driver' => 'gd'));
+				$image = $manager->make($des)->resize(266, 150)->save($des . 't.jpg', 80);
+			}
+	  	}
+		
+		Fileentry::create($entry);
 	}
 
 	/**
@@ -60,19 +78,11 @@ class FileEntryController extends Controller {
 	 */
 	public function show(Fileentry $entry)
 	{
-		$filename = $entry->filename . '.' . $entry->extension;
-		$file = Storage::disk('local')->get($filename);
-
-		return (new Response($file, 200))
-				->header('Content-Type', $entry->mime);
+		if($entry['type'] != 'image' && $entry['type'] != 'video') {
+			$entry = array_except($entry, array("link"));
+		}
+		return $entry->toJson();
 	}
-
-
-	// public function edit(Fileentry $entry){
-	// 	return view('files.edit');
-	// }
-
-
 
 	/**
 	 * Update the specified resource in storage.
@@ -80,12 +90,9 @@ class FileEntryController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update(Fileentry $entry, FileEditRequest $request)
+	public function update(Fileentry $entry)
 	{
-		$input = array_except($request->all() , '_method');
-		$entry->update($input);
-
-		return Redirect::route('files.index')->with('message', 'File info updated');
+		$entry->update(Request::all());
 	}
 
 	/**
@@ -96,13 +103,41 @@ class FileEntryController extends Controller {
 	 */
 	public function destroy(Fileentry $entry)
 	{
+        if($entry->type != 'video' && $entry->link != ""){
+        	unlink($entry->link);
+        	unlink($entry->link . 't.jpg');
+        }
 		$entry->delete();
-		$filename = $entry->filename . '.' . $entry->extension;
-		if (Storage::exists($filename)) {
-			Storage::delete($filename);
-		}
+	}
 
-		return Redirect::route('files.index');
+
+	public function upload(FileUploadRequest $request) {
+		$filename = $_FILES['file']['name'];
+  		$destination = 'fileStorage/temp/' . $filename;
+		move_uploaded_file($_FILES['file']['tmp_name'], $destination);
+		return $destination;
+	}
+
+	public function download(Fileentry $entry) {
+		$extension = File::extension($entry->link);
+		$password = file_get_contents('../filepassword');
+		Request::get('pass');
+		if($password == Request::get('pass')) {
+			if(!Auth::user()) $entry->increment('views');
+			return response()->download($entry->link, $entry->title.'.'.$extension);
+		} else {
+			return redirect("documents")->withErrors(['pnm' => ""]);
+		}
+	}
+
+	public function changeVisibility(Fileentry $entry) {
+		$entry->isVisible = !$entry->isVisible;
+		$entry->save();
+	}
+
+	public function incrementHits(Fileentry $entry) {
+		if(Auth::user()) return;
+        $entry->increment('views');
 	}
 
 }

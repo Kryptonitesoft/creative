@@ -1,0 +1,66 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-6 col-xs-7 col-vs-12">
+      <h2>File</h2>
+      <form class="form form-horizontal" ng-submit="save()">
+          <div class="alert alert-danger col-md-9 col-sm-12" style="margin:0px" ng-show="errors">
+            <strong>Whoops!</strong> Somthing went wrong!
+            <ul class="repeat-animation" style="margin-left:20px" ng-repeat="error in errors">
+              <li class="repeat-animation" ng-repeat="err in error">{{err}}</li>
+            </ul>
+          </div>
+          <div class="form-group">
+            <label for="title" class="control-label sr-only">Title</label>
+            <div class="col-md-9 col-sm-12">
+                <input type="text" class="form-control" id="title" placeholder="Title" ng-model="fileEntry.title" ng-required="true">
+            </div>
+          </div>
+
+          <div class="form-group" ng-hide="editMode">
+            <label for="videoid" class="control-label sr-only">Video ID</label>
+            <div class="col-md-9 col-sm-12">
+                <input type="text" class="form-control" id="videoid" placeholder="Youtube Video ID" ng-model="fileEntry.link" ng-change="loadThumbnail()">
+            </div>
+          </div>
+
+          <div class="form-group" ng-hide="editMode || fileEntry.type=='video'">
+            <label for="file" class="control-label sr-only">File</label>
+            <div class="col-md-9 col-sm-12">
+                <input type="file" name="filefield" class="form-control" id="file" placeholder="File" ng-model="files" ngf-select ngf-change="upload($files)">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="description" class="control-label sr-only">Description</label>
+            <div class="col-md-9 col-sm-12">
+              <textarea id="description" cols="30" rows="10" ng-model="fileEntry.description" class="form-control" placeholder="Description"></textarea>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-md-9 col-sm-12">
+                <input type="submit" class="form-control button" value="Save">
+            </div>
+          </div>
+      </form>
+    </div>
+    <div class="col-sm-6 col-xs-5 col-vs-12">
+      <div class="row overview gallery tiles" ng-hide="fileEntry.thumbnail == undefined">
+        <div class="col-md-6">
+          <h2>Preview</h2>
+          <figure>
+            <div class="preview" ng-click="changevisibility()">
+              <span ng-hide="fileEntry.isVisible" class="icon-lock-circle"></span>
+              <img ng-src="{{fileEntry.thumbnail}}" alt="{{fileEntry.title}}">
+              <div ng-show="fileEntry.type=='video'"><span class="icon-play-circle"></span></div>
+              <div ng-show="fileEntry.type!='video'&&fileEntry.type!='image'"><span class="icon icon-{{fileEntry.type | icon}}"></span></div>
+            </div>
+            <figcaption class="title">{{fileEntry.title}}</figcaption>
+            <figcaption>{{fileEntry.size | size | number:2 }} {{fileEntry.size | sizeType }}</figcaption>
+            <figcaption>{{fileEntry.created_at | ago}}</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,64 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-sm-6">
+			<h2>Exam Detail</h2>
+			<form action="" class="form form-horizontal" ng-submit="save()">
+			    <div class="alert alert-danger col-md-9 col-sm-12" style="margin:0px; width:82%" ng-show="errors">
+		            <strong>Whoops!</strong> Somthing went wrong!
+		            <ul class="repeat-animation repeat-animation" style="margin-left:20px" ng-repeat="error in errors">
+		            	<li class="repeat-animation" ng-repeat="err in error">{{err}}</li>
+		            </ul>
+		        </div>
+				<div class="form-group">
+					<label class="control-label sr-only" for="xmtitle">Exam Title</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" ng-model="exam.title" placeholder="Exam Title"  ng-required="true">
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label sr-only" for="xmsub">Subject</label>
+					<div class="col-sm-10">
+						<select class="form-control" ng-model="exam.subject" ng-required="true">
+							<option value="">Subject</option>
+							<option ng-repeat="subject in ['Accounting', 'Bangla', 'BGS', 'Biology', 'Chemistry', 'English', 'Finance and Banking', 'General Science', 'ICT', 'Introduction to Business', 'Mathematics', 'Physics']" value="{{subject}}">{{subject}}</option>
+						</select>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="control-label sr-only" for="xmclass">Class</label>
+					<div class="col-sm-10">
+						<select class="form-control" ng-model="exam.class" ng-required="true">
+							<option value="">Class</option>
+							<option ng-repeat="class in [[5, 'V'], [6, 'VI'], [7, 'VII'], [8, 'VIII'], [9, 'IX'], [10, 'X'], [11, 'XI'], [12, 'XII']]" value="{{class[0]}}">{{class[1]}}</option>
+						</select>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="control-label sr-only" for="xmmarkrange">Mark Range</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" ng-model="exam.mark_range" placeholder="Mark Range" ng-required="true">
+					</div>
+				</div>
+
+
+
+			  	<div class="form-group">
+			    	<label for="xmdate" class="control-label sr-only">Date</label>
+			    	<div class="col-sm-10">
+						<input type="date" id="xmdate" class="form-control" ng-model="exam.date" placeholder="Date" ng-required="true">
+			    	</div>
+			  	</div>
+
+
+				<div class="form-group">
+					<div class="col-sm-10">
+						<input type="submit" class="button form-control" value="Save">
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

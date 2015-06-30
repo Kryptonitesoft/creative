@@ -1,0 +1,277 @@
+<div class="container-fluid hideForPrint">
+	<h2>Amission Form</h2>
+	<div class="row admissionForm form">
+		<div class="col-md-6 col-sm-8 col-xs-7 col-vs-12">
+			<form class="form form-horizontal" ng-submit="update()">
+			  	<div class="form-group">
+			    	<label for="stdname" class="col-sm-4 control-label">Student's Name</label>
+			    	<div class="col-sm-8">
+			      		<input ng-required="true" type="text" class="form-control" id="stdname" placeholder="What's your name?" ng-model="student.name">
+			    	</div>
+			  	</div>
+		  		<error errors="errors.name"></error>
+
+			  	<div class="form-group">
+			    	<label for="fathersname" class="col-sm-4 control-label">Father's Name</label>
+			    	<div class="col-sm-8">
+			      		<input ng-required="true" type="text" class="form-control" id="fathersname" placeholder="Your father's name." ng-model="student.fathers_name">
+			    	</div>
+			  	</div>
+		  		<error errors="errors.fathers_name"></error>
+
+			  	<div class="form-group">
+			    	<label for="mothersname" class="col-sm-4 control-label">Mother's Name</label>
+			    	<div class="col-sm-8">
+			      		<input ng-required="true" type="text" class="form-control" id="mothersname" placeholder="Your mother's name." ng-model="student.mothers_name">
+			    	</div>
+			  	</div>
+		  		<error errors="errors.mothers_name"></error>
+
+			  	<div class="form-group">
+			    	<label for="schoolname" class="col-sm-4 control-label">School Name</label>
+			    	<div class="col-sm-8">
+			      		<input ng-required="true" type="text" class="form-control" id="schoolname" placeholder="Your shool name." ng-model="student.schools_name">
+			    	</div>
+			  	</div>
+		  		<error errors="errors.schools_name"></error>
+
+			  	<div class="form-group">
+			    	<label for="class" class="col-sm-4 control-label">Class</label>
+			    	<div class="col-sm-8">
+			      		<input ng-required="true" type="text" class="form-control" id="class" placeholder="What class do you read in?" ng-model="student.class">
+			    	</div>
+			  	</div>
+		  		<error errors="errors.class"></error>
+
+			  	<div class="form-group">
+			    	<label for="version" class="col-sm-4 control-label">Version</label>
+			    	<div class="col-sm-8">
+			    		<select class="form-control" id="version" ng-model="student.version" ng-required="true">
+			    			<option value="English">English</option>
+			    			<option value="Bangla">Bangla</option>
+			    		</select>
+			    	</div>
+			  	</div>
+		  		<error errors="errors.version"></error>
+
+			  	<div class="form-group">
+			    	<label for="roll" class="col-sm-4 control-label">Roll</label>
+			    	<div class="col-sm-8">
+			      		<input ng-required="true" type="text" class="form-control" id="roll" placeholder="Your class roll?" ng-model="student.sroll">
+			    	</div>
+			  	</div>
+		  		<error errors="errors.sroll"></error>
+
+			  	<div class="form-group">
+			    	<label for="presentaddress" class="col-sm-4 control-label">Present Address</label>
+			    	<div class="col-sm-8">
+			    		<textarea ng-required="true" class="form-control" placeholder="Your present address?" id="presentaddress" ng-model="student.present_address"></textarea>
+			    	</div>
+			  	</div>
+		  		<error errors="errors.present_address"></error>
+
+			  	<div class="form-group">
+			    	<label for="permanentaddress" class="col-sm-4 control-label">Permanent Address</label>
+			    	<div class="col-sm-8">
+			    		<textarea ng-required="true" class="form-control" placeholder="Your permanent address?" id="permanentaddress" ng-model="student.permanent_address"></textarea>
+			    	</div>
+			  	</div>
+		  		<error errors="errors.permanent_address"></error>
+
+			  	<div class="form-group">
+			    	<label for="dob" class="col-sm-4 control-label">Date of Birth</label>
+			    	<div class="col-sm-8">
+			    		<input ng-required="true" type="date" class="form-control" id="dob" ng-model="student.date_of_birth">
+			    	</div>
+			  	</div>
+		  		<error errors="errors.date_of_birth"></error>
+
+			  	<div class="form-group">
+			    	<label for="sex" class="col-sm-4 control-label">Sex</label>
+			    	<div class="col-sm-8">
+			    		<div class="radio">
+			    			<label>
+			    				<input ng-required="true" type="radio" name="sex" id="sex" value="Male" ng-model="student.sex"> Male
+						  	</label>
+						</div>
+			    		<div class="radio">
+			    			<label>
+			    				<input ng-required="true" type="radio" name="sex" id="sex" value="Female" ng-model="student.sex"> Female
+						  	</label>
+						</div>
+			    	</div>
+			  	</div>
+		  		<error errors="errors.sex"></error>
+
+			  	<div class="form-group">
+			    	<label for="religion" class="col-sm-4 control-label">Religion</label>
+			    	<div class="col-sm-8">
+			      		<input type="text" class="form-control" id="religion" placeholder="Your religion?" ng-model="student.religion">
+			    	</div>
+			  	</div>
+		  		<error errors="errors.religion"></error>
+
+			  	<div class="form-group">
+			    	<label for="phone" class="col-sm-4 control-label">Phone</label>
+			    	<div class="col-sm-8">
+			      		<input ng-required="true" type="text" class="form-control" id="phone" placeholder="Your phone number?" ng-model="student.phone">
+			    	</div>
+			  	</div>
+		  		<error errors="errors.phone"></error>
+
+			  	<div class="form-group">
+			    	<label for="email" class="col-sm-4 control-label">Email</label>
+			    	<div class="col-sm-8">
+			      		<input ng-required="true" type="email" class="form-control" id="email" placeholder="Your email address?" ng-model="student.email">
+			    	</div>
+			  	</div>
+		  		<error errors="errors.email"></error>
+
+			  	<div class="form-group">
+			    	<label for="package" class="col-sm-4 control-label">Package</label>
+			    	<div class="col-sm-8">
+			    		<select name="" id="package" class="form-control" ng-model="student.package" ng-required="true">
+			    			<option value="">Select a Package</option>
+			    			<option value="1">Rajuk Admission Coaching</option>
+			    			<option value="2">Academic Coaching</option>
+			    			<option value="3">Science Coching</option>
+			    			<option value="4">Business Studies Coching</option>
+			    		</select>
+			    	</div>
+			  	</div>
+		  		<error errors="errors.package"></error>
+
+			  	<div class="form-group">
+			    	<label for="photo" class="col-sm-4 control-label">Photo</label>
+			    	<div class="col-sm-8">
+		    			<input type="file" name="filefield" class="form-control" id="photo" placeholder="Photo" ng-model="files" ngf-select ngf-change="upload($files)">
+			    	</div>
+			  	</div>
+		  		<error errors="errors.file"></error>
+
+			  	<div class="form-group">
+			    	<div class="col-sm-offset-4 col-sm-8">
+			      		<input type="submit" class="form-control button" value="Save">
+			    	</div>
+			  	</div>
+			</form>
+		</div>
+
+		<div class="col-md-offset-1 col-md-5 col-sm-4 col-xs-5 col-vs-12">
+			<img ng-src="{{student.image}}" alt="">
+			<form action="" class="form form-inline" style="margin-left:-15px">
+			  	<div class="form-group">
+			    	<div class="col-sm-12">
+						<span class="button form-control" ng-click="print()">Print</span>
+			    	</div>
+			  	</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<script type="text/ng-template" id="Errors.html">
+	<div class="form-group" ng-show="errors">
+		<div class="col-sm-offset-4 col-sm-8">
+			<div class="alert alert-danger repeat-animation" ng-repeat="msg in errors"> {{msg}}</div>
+		</div>
+	</div>
+</script>
+
+<div class="container-fluid printPreview showForPrint">
+	<div class="row">
+		<div class="col-xs-12 formno">Form No: ...........................</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-xs-3 logo">
+			<img ng-src="../img/logo.png" alt="">
+		</div>
+		<div class="col-xs-6 heading">
+			<h2>Creative Coaching</h2>
+			<p>House # 25 [Ground Floor], Road # 11, Sector # 06, Uttara, Dhaka–1230</p>
+			<p>Phone: <span class="tel">01731-587382</span>, <span class="tel">01714-535536</span></p>
+			<p>eMail: <span class="email">email@creativecoaching.com.bd</span></p>
+		</div>
+		<div class="col-xs-3">
+			<img ng-src="{{student.image}}" alt="">
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-xs-12 date">
+			<span class="tel">{{student.created_at | fixdate | date:"MMMM dd, yyyy"}}</span>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-xs-12">
+			<h3 class="title">Admission Form</h3>
+		</div>
+	</div>
+
+	<div class="row info">
+		<div class="col-xs-4 field">Student's Name:</div>
+		<div class="col-xs-8 text">{{student.name}}</div>
+	</div>
+	<div class="row info">
+		<div class="col-xs-4 field">Father's Name:</div>
+		<div class="col-xs-8 text">{{student.fathers_name}}</div>
+	</div>
+	<div class="row info">
+		<div class="col-xs-4 field">Mother's Name:</div>
+		<div class="col-xs-8 text">{{student.mothers_name}}</div>
+	</div>
+	<div class="row info">
+		<div class="col-xs-4 field">School Name:</div>
+		<div class="col-xs-8 text">{{student.schools_name}}</div>
+	</div>
+
+	<div class="row info">
+		<div class="col-xs-4 field">Class:</div>
+		<div class="col-xs-8 text">{{student.class}}</div>
+	</div>
+	<div class="row info">
+		<div class="col-xs-4 field">Version:</div>
+		<div class="col-xs-8 text">{{student.version}}</div>
+	</div>
+	<div class="row info">
+		<div class="col-xs-4 field">Roll:</div>
+		<div class="col-xs-8 text">{{student.sroll}}</div>
+	</div>
+	<div class="row info">
+		<div class="col-xs-4 field">Sex:</div>
+		<div class="col-xs-8 text">{{student.sex}}</div>
+	</div>
+
+	<div class="row info">
+		<div class="col-xs-4 field">Present Address:</div>
+		<div class="col-xs-8 text">{{student.present_address}}</div>
+	</div>
+
+	<div class="row info">
+		<div class="col-xs-4 field">Permanent Address:</div>
+		<div class="col-xs-8 text">{{student.permanent_address}}</div>
+	</div>
+
+	<div class="row info">
+		<div class="col-xs-4 field">Date of Birth:</div>
+		<div class="col-xs-8 text">{{student.date_of_birth | fixdate | date:"MMMM dd, yyyy"}}</div>
+	</div>
+
+	<div class="row info">
+		<div class="col-xs-4 field">Religion:</div>
+		<div class="col-xs-8 text">{{student.religion}}</div>
+	</div>
+
+	<div class="row info">
+		<div class="col-xs-4 field">Contact No:</div>
+		<div class="col-xs-8 text">{{student.phone | phone}}</div>
+	</div>
+
+	<div class="row signature">
+		<div class="col-xs-4"><span>Student's Signature</span></div>
+		<div class="col-xs-4"><span>Parent's Signature</span></div>
+		<div class="col-xs-4"><span>Director's Signature</span></div>
+	</div>
+</div>

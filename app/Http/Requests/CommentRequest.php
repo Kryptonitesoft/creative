@@ -22,7 +22,9 @@ class CommentRequest extends Request {
 	public function rules()
 	{
 		return [
-			''
+	        'body'  => 'required',
+	        'name'  => 'required | max:50',
+	        'email' => 'required | email'
 		];
 	}
 

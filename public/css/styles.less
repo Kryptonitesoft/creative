@@ -1,0 +1,226 @@
+// Styles
+@import 'library/bootstrap.min.less';
+@import 'library/textAngular.less';
+@import 'partials/_fonts';
+@import 'partials/_variables';
+@import 'library/loading-bar.less';
+@import 'library/animate.less';
+@import 'library/animations.less';
+
+@theme_color: #7CC576;
+@theme_color_light: lighten(@theme_color, 30%);
+
+// Mixins
+.disableSelection {	
+	-webkit-touch-callout: none;
+      -webkit-user-select: none;
+       -khtml-user-select: none;
+         -moz-user-select: none;
+          -ms-user-select: none;
+              user-select: none;
+}
+
+// Default Settings
+@-ms-viewport {
+	width: device-width;
+}
+
+* {
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+		    box-sizing: border-box;
+	-webkit-font-smoothing: antialiased;
+	        font-smoothing: antialiased;
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	min-height: 100%;
+	position: relative;
+}
+
+html.lt-ie9 {
+	max-width: 768px;
+	margin: 0 auto;
+	position: relative;
+}
+
+body {
+	background: @white;
+	padding-top: 100px;
+	font-size: 16px;
+}
+
+a {
+	color: #a9aeae;
+	text-decoration: none;
+	&:hover, &:focus {
+		text-decoration: none;
+		color: @theme_color;
+	}
+}
+
+// Headings
+h2 { font-family: "Montserrat-Bold"; font-size: 2.5em }
+
+::-webkit-scrollbar {
+	width: 5px;
+	height: 5px;
+}
+::-webkit-scrollbar-thumb {
+	background: @theme_color;
+}
+// End of Default Settings
+
+
+// Header Style
+nav[role=primary] {
+	background: @white;
+	border: none;
+	.navbar-brand {
+		transition: 0.5s height ease-in-out, 0.5s padding ease-in-out, 0.5s line-height ease-in-out;
+		height: 100px;
+		font-weight: bold;
+		padding-top: 32px;
+		font-size: 1.125em;
+		font-family: "Montserrat-Bold";
+		color: #555555;
+		.icon-logo {
+			display: inline-block;
+			transition: 0.5s all ease-in-out;
+			color: @theme_color;
+			font-size: 2.5em;
+			margin-top: -5px;
+			vertical-align: middle;
+		}
+	}
+	.navbar-nav {
+		a {
+			font-family: "Montserrat";
+			font-size: 0.875em;
+			padding: 0px 30px;
+			padding-top: 36px;
+			height: 100px;
+			transition: 0.5s all ease-in-out, .3s background ease-in, .3s color ease-in;
+			color: @black;
+			text-align: center;
+			&:hover, &:focus {
+				background: @theme_color;
+				color: @white;
+			}
+		}
+		ul.dropdown-menu {
+			border: 0;
+			padding: 0;
+			border-radius: 0;
+			width: 100%;
+			&>li>a {
+				height: 50px;
+				line-height: 50px;
+				text-align: left;
+				padding: 0px 30px;
+			}
+		}
+		.open>a,
+		.open>a:focus, 
+		.open>a:hover {
+			background: @theme_color;
+			color: @white;
+		}
+
+	}
+}
+// End of Header Style
+
+// Partials
+@import 'partials/_pagination';
+@import 'partials/_table';
+@import 'partials/_form';
+@import 'partials/_button'; 
+@import 'partials/_animation-scroll';
+@import 'partials/_blockquote';
+@import 'partials/_panel';
+@import 'partials/_imageViewer';
+
+
+// Pages Style
+@import 'pages/_home';
+@import 'pages/_gallery';
+@import 'pages/_documents';
+@import 'pages/_blog';
+@import 'pages/_about';
+
+// Short Pages Styles
+.pageTitle {
+	margin-left: 15px;
+}
+.pageTitle.insideView {
+	margin-left: -17px;
+	margin-bottom: 20px;
+}
+.btn-radio {
+	text-align: right;
+	margin-top: 24px;
+	margin-left: -15px;
+}
+.alert {
+	font-family: @font4;
+	border-radius: 0;
+	margin: 0 15px;
+	transition: 0.3s all ease-in;
+}
+
+// Footer Style
+footer {
+	color: #a9aeae;
+	margin-top: 70px;
+	margin-bottom: 30px;
+	.social {
+		font-size: 4.875em;
+		a {
+			margin: 20px 15px;
+		}
+	}
+	nav[role=footer] {
+		font-family: @font4;
+		ul {
+			list-style: none;
+			li {
+				padding: 0px 15px;
+				display: inline;
+			}
+		}
+	}
+}
+.notFound {
+	text-align: center;
+	font-family: @font1;
+	font-size: 1.125em;
+	color: @color1;
+	margin-top: 50px;
+}
+// End of Footer Style
+
+// Special Media Query
+@media only screen and (max-width:479px){
+	.col-vs-1,
+	.col-vs-2,
+	.col-vs-3,
+	.col-vs-4,
+	.col-vs-5,
+	.col-vs-6,
+	.col-vs-7,
+	.col-vs-8,
+	.col-vs-9,
+	.col-vs-10,
+	.col-vs-11,
+	.col-vs-12 {
+		width: 100%;
+	}
+}
+
+// Tablets
+@media only screen and (max-width:768px){
+	body { font-size: 14px; }
+}

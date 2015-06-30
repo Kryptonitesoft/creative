@@ -1,34 +1,33 @@
 <?php namespace App\Http\Controllers;
 
+use Input;
 use Redirect;
 use App\Models\Post;
 use App\Models\Comment;
 use App\Http\Requests;
+use App\Http\Requests\CommentRequest;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Tests\RedirectResponseTest;
 
 class CommentsController extends Controller {
 
-
-    protected $rules = [
-        'body'  => 'required',
-        'name'  =>  'required',
-        'email' =>  'required'
-    ];
+    public function index(Post $post){
+        return Comment::wherePost_id($post->id)
+        			  ->orderBy("created_at", "desc")
+        			  ->paginate(Input::get("itemPerPage"));
+    }
 
     /**
      * @param Post $post
      */
-	public function store(Post $post, Request $request)
+	public function store(Post $post, CommentRequest $request)
 	{
-        $this->validate($request, $this->rules);
         $input = $request->all();
         $input['post_id'] = $post->id;
         Comment::create($input);
         $post->increment('comment_count');
-
-        return Redirect::route('posts.show', $post->id)->with('message', 'Comment was saved');
 	}
 
 
@@ -42,7 +41,6 @@ class CommentsController extends Controller {
 	{
         $comment->delete();
         $post->decrement('comment_count');
-        return Redirect::route('posts.show', $post->id)->with('message', 'Comment deleted');
 	}
 
 }

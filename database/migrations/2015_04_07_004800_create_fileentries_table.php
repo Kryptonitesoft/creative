@@ -11,12 +11,12 @@ class CreateFileentriesTable extends Migration {
 			$table->engine = 'InnoDB';
 
 			$table->increments('id');
-			$table->string('filename');
-			$table->string('mime');
-			$table->string('extension');
-			$table->string('type');
-			$table->string('title');
-			$table->integer('size', false, true);
+			$table->string('link', 300);
+			$table->string('type', 15);
+			$table->string('title', 50);
+			$table->integer('size', false, true)->nullable()->default(0);
+			$table->string('description', 300)->nullable();
+			$table->boolean('isVisible')->nullable()->default(0);
 			$table->smallInteger('views', false, true)->default(0);
 			$table->timestamps();
 		});

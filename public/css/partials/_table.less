@@ -1,0 +1,38 @@
+.table {
+	text-align: center;
+	.tr {
+		box-shadow: 0px 0px 0px 0.3px rgba(0, 0, 0, 0.3);
+		margin-bottom: 5px;
+		border-radius: 0.5px;
+		font-family: @font3;
+		font-size: 0.750em;
+		color: #bababa;
+		height: auto;
+		padding: 8px 0px;
+	}
+	.header {
+		background: @theme_color;
+		font-family: @font1;
+		text-align: center;
+		border-radius: 0px;
+		font-size: 0.875em;
+		color: @white;
+		.caret        { transform: rotateX(180deg); }
+		.caret.rotate { transform: rotateX(  0deg); }
+		.hover:hover {
+			cursor: pointer;
+		}
+	}
+	.leftAlign { text-align: left; }
+	.dltbtn {
+		border: 1px solid #bababa;
+		padding: 0px 2px 1px 2px;
+		text-align: center;
+		font-size: 0.625em;
+		&:hover {
+			border: 1px solid @theme_color;
+			color: @theme_color;
+			cursor: pointer;
+		}
+	}
+}

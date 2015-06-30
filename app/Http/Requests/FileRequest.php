@@ -22,9 +22,9 @@ class FileRequest extends Request {
 	public function rules()
 	{
 		return [
-			'type'	=> 'required',
-			'title' => 'required',
-			'filefield'	=> 'required'
+			'title'    => 'required | max:50',
+			'type'     => 'required',
+			'fileName' => 'required_without:link'
 		];
 	}
 

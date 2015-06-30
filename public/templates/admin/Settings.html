@@ -1,0 +1,65 @@
+<div class="container-fluid settings">
+	<div class="row">
+	    <div class="col-sm-6 col-xs-7 col-vs-12">
+	      	<h2>Settings</h2>
+	      	<h4>Change Admin Password: </h4>
+	      	<form class="form form-horizontal" ng-submit="update()">
+	      		<div class="alert alert-danger col-md-9 col-sm-12" style="margin:0px" ng-show="errors">
+	      			<strong>Whoops!</strong> Somthing went wrong!
+	            	<ul class="repeat-animation" style="margin-left:20px" ng-repeat="error in errors">
+	              		<li class="repeat-animation" ng-repeat="err in error">{{err}}</li>
+	            	</ul>
+	          	</div>
+	          	<div class="alert alert-success col-md-9 col-sm-12" ng-show="success">{{success}}</div>
+	      		
+	          	<div class="form-group">
+	            	<label for="oldpass" class="control-label sr-only">Old Password: </label>
+	            	<div class="col-md-9 col-sm-12">
+	                	<input type="password" class="form-control" id="oldpass" placeholder="Type old password" ng-model="admin.old_password">
+	            	</div>
+	          	</div>
+
+	          	<div class="form-group" ng-hide="editMode">
+	            	<label for="newpass" class="control-label sr-only">New Password: </label>
+	            	<div class="col-md-9 col-sm-12">
+	                	<input type="password" class="form-control" id="newpass" placeholder="Type new password" ng-model="admin.new_password">
+	            	</div>
+	          	</div>
+
+	          	<div class="form-group" ng-hide="editMode">
+	            	<label for="newpassagain" class="control-label sr-only">New Password Again: </label>
+	            	<div class="col-md-9 col-sm-12">
+	                	<input type="password" class="form-control" id="newpassagain" placeholder="Type new password again" ng-model="admin.again_new_password">
+	            	</div>
+	          	</div>
+
+	          	<div class="form-group">
+	            	<div class="col-md-9 col-sm-12">
+	                	<input type="submit" class="form-control button" value="Save">
+	            	</div>
+	          	</div>
+	      	</form>
+
+			<form class="form form-inline" ng-submit="changeFilePassword()">
+				<div class="form-group">
+					<label for="" class="first control-label">File Password: {{info.filepass}}</label>
+	      			<input type="text" class="form-control" ng-model="newPass">
+				</div>
+
+	          	<div class="form-group">
+	                <input type="submit" class="form-control button" value="Update">
+	          	</div>
+			</form>
+
+			<form class="form form-inline">
+				<div class="form-group">
+					<label for="" class="first control-label">Tempsize: {{info.tempsize | size | number:2}} {{info.tempsize | sizeType}}</label>
+				</div>
+
+	          	<div class="form-group">
+	                <button type="submit" class="form-control button" ng-click="clearTemp()">Clear Now</button>
+	          	</div>
+			</form>
+	    </div>
+	</div>
+</div>

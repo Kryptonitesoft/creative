@@ -1,0 +1,112 @@
+.form {
+	.control-label {
+		color: #909090;
+		font-size: 14px;
+	}
+	.form-control {
+		border: 1px solid rgba(0, 0, 0, 0.1);
+		font-family: @font3;
+		border-radius: 2px;
+		box-shadow: none;
+		margin-top: 5px;
+		font-size: 12px;
+		color: #bababa;
+		height: 30px;
+	}
+	.button.form-control {
+		transition: 0.3s all ease-in;
+		background: @theme_color;
+		text-align: center;
+		color: white;
+		&:hover {
+			background: lighten(@theme_color, 25%);
+			color: @theme_color;
+		}
+	}
+	.hiddenInput {
+		border: 1px solid rgba(0, 0, 0, 0.1);
+		font-family: @font3;
+		border-radius: 2px;
+		padding-left: 10px;
+		box-shadow: none;
+		width: 100%;
+		outline: 0;
+		&:focus {
+			border: 1px solid transparent;
+			box-shadow: 0px 0px 0.1px 1px @theme_color;
+		}
+	}
+	.alert {
+		display: block;
+		font-size: 14px;
+		font-family: @font7;
+		padding: 5px;
+		margin: 0px;
+	}
+}
+.form.form-horizontal {
+	.form-control:focus {
+		border: 1px solid transparent;
+		box-shadow: 0px 0px 0.1px 1px @theme_color;
+	}
+	input[type=file] {
+		padding: 0;
+		margin-top: 5px;
+		margin: 0;
+	}
+	input[type=file]::-webkit-file-upload-button {
+		transition: 0.3s all ease-in;
+		background: @theme_color;
+		border-radius: 2px;
+		color: @white;
+		border: none;
+		height: 100%;
+		width: 100%;
+		&:hover {
+			background: lighten(@theme_color, 25%);
+			color: @theme_color;
+			cursor: pointer;
+		}
+	}
+	textarea {
+		height: 70px;
+	}
+}
+
+.form.form-inline {
+	margin: 10px 0px;
+	.control-label {
+		margin: 0px 10px;
+		margin-top: 5px;
+	}
+	.control-label.first {
+		margin-left: 0px;
+	}
+	.form-control {
+		border: 1px solid rgba(0, 0, 0, 0.1);
+		font-family: @font3;
+		border-radius: 2px;
+		box-shadow: none;
+		margin-top: 5px;
+		font-size: 12px;
+		color: #bababa;
+		height: 30px;
+	}
+	.form-control:focus {
+		border: 1px solid transparent;
+		box-shadow: 0px 0px 0.1px 1px @theme_color;
+	}
+	.button.form-control {
+		color: @white;
+		&:hover {
+			color: @theme_color;
+		}
+	}
+	.text {
+		font-family: @font3;
+		font-size: 14px;
+		color: #bababa;
+		vertical-align: bottom;
+		margin-right: 20px;
+	}
+}

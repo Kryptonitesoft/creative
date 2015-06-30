@@ -1,0 +1,38 @@
+<div class="resultView">
+	<h2 class="pageTitle insideView">Published Result</h2>
+	<form action="" class="form form-inline">
+		<div class="form-group">
+			<label class="first control-label">Exam Title:</label> <span class="text">{{exam.title}}</span>
+		</div>
+
+		<div class="form-group">
+			<label class="control-label">Subject:</label> <span class="text">{{exam.subject}}</span>
+		</div>
+
+		<div class="form-group">
+			<label class="control-label">Class:</label> <span class="text">{{exam.class| class}}</span>
+		</div>
+
+		<div class="form-group">
+			<label class="control-label">Total Mark:</label> <span class="text">{{exam.mark_range}}</span>
+		</div>
+
+		<div class="form-group">
+			<label class="control-label">Date:</label> <span class="text">{{exam.date | fixdate | date:'MMMM d, yyyy'}}</span>
+		</div>
+	</form>
+	<div class="table">
+		<div class="tr header row">
+			<div class="td col-xs-2"><span class="hover" ng-click="sort('sroll')">Roll</span> <span ng-show="sortBy=='sroll'" class="caret" ng-class="{rotate: isReverse}"></span></div>
+			<div class="td col-xs-6 leftAlign"><span class="hover" ng-click="sort('name')">Name</span> <span ng-show="sortBy=='name'" class="caret" ng-class="{rotate: isReverse}"></span></div>
+			<div class="td col-xs-2"><span class="hover" ng-click="sort('mark')">Mark</span> <span ng-show="sortBy=='mark'" class="caret" ng-class="{rotate: isReverse}"></span></div>
+			<div class="td col-xs-2">G.P.</div>
+		</div>
+		<div class="tr row repeat-animation" ng-repeat="result in results">
+			<div class="td col-xs-2">{{result.sroll}}</div>
+			<div class="td col-xs-6 leftAlign">{{result.name}}</div>
+			<div class="td col-xs-2">{{result.mark}}</div>
+			<div class="td col-xs-2">{{result.mark | gp:exam.mark_range | number:2}}</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,22 @@
+<div class="container-fluid">
+	<h2>Teachers</h2>
+	<div class="resultView">
+		<div class="container-fluid">
+			<div class="table">
+				<div class="tr header row">
+					<div class="td col-vs-12 col-xs-4 leftAlign">Name</div>
+					<div class="td col-vs-12 col-xs-3 leftAlign">Designation</div>
+					<div class="td col-vs-12 col-xs-3 leftAlign">Teaches</div>
+					<div class="td col-vs-12 col-xs-2"></div>
+				</div>
+				<div class="tr row repeat-animation" ng-repeat="teacher in teachers">
+					<a href="#/teachers/edit/{{teacher.id}}"><div class="td col-vs-12 col-xs-4 leftAlign">{{teacher.name}}</div></a>
+					<div class="td col-vs-12 col-xs-3 leftAlign">{{teacher.designation}}</div>
+					<div class="td col-vs-12 col-xs-3 leftAlign">{{teacher.teaches}}</div>
+					<div class="td col-vs-12 col-xs-2"><span class="dltbtn" ng-click="delete($index)">Delete</span></div>
+				</div>
+			</div>
+		</div>
+		<a href="#/teachers/add" class="btn button" style="width: 100px; text-align: center">Add</a>
+	</div>
+</div>

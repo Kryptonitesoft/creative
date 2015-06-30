@@ -6,29 +6,27 @@ use App\Models\Post;
 use App\Models\Comment;
 use App\Models\Teacher;
 use App\Models\Archive;
+use App\Models\Categorie;
 
 class PostTableSeeder extends Seeder {
 
     public function run()
     {
-        $teacher = new Teacher;
-        $teacher->email = 'joynal3483@gmail.com';
-        $teacher->name = 'Joynal Abedin';
-        $teacher->save();
+        DB::table('archives')->delete();
+        DB::table('posts')->delete();
 
         $archive = new Archive;
         $archive->year = 2014;
-        $archive->month = 'April';
+        $archive->month = 4;
         $archive->save();
 
         $faker = Faker::create();
 
         for ($i = 1; $i <= 10; $i ++)
         {
-            $content = $faker->realText(1000, 4);
             $post = new Post;
             $post->title = "Post no $i";
-            $post->body = $content;
+            $post->body = $faker->realText(1000, 4);
             $post->slug = str_slug($post->title);
             $post->author_id = 1;
             $post->archive_id = 1;
@@ -44,6 +42,10 @@ class PostTableSeeder extends Seeder {
                 $post->comments()->save($comment);
                 $post->increment('comment_count');
             }
+            DB::table('category_post')->insert([
+                'category_id' => mt_rand(1, 14),
+                'post_id'     => $post->id
+            ]);
         }
     }
 }

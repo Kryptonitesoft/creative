@@ -1,0 +1,266 @@
+.cycle-slideshow {
+	margin-top: -22px;
+	position: relative;
+	img {
+		width: 100%;
+		height: 100%;
+	}
+	.transparent {
+		background: rgba(0, 0, 0, 0.75);
+		position: absolute;
+		text-align: center;
+		width: 100%;
+		top: 0;
+		h3 {
+			text-transform: uppercase;
+			font-family: @font2;
+			font-size: 3.750em;
+			margin: 0 auto;
+			margin-top: 50px;
+			color: @white;
+			width: 60%;
+		}
+		.btn {
+			position: absolute;
+			text-transform: uppercase;
+			border-radius: 50px;
+			padding: 20px;
+			bottom: 50px;
+			left: 44%;
+			font-size: 1.000em;
+		}
+	}
+	.icon-left-circle, .icon-right-circle {
+		transition: 0.3s color ease-in-out;
+		color: rgba(255, 255, 255, 1);
+		font-size: 3.125em;
+		position: absolute;
+		z-index: 101;
+		top: 50%; 
+		&:hover { color: @theme_color; cursor: pointer; }
+	}
+	.icon-left-circle  { left : 100px; }
+	.icon-right-circle { right: 100px; }
+}
+
+.whatis {
+	margin: 75px 0;
+	h2 {
+		color: #222222;
+		text-transform: uppercase;
+		font-family: "Montserrat-Bold";
+		font-size: 2.5em;
+	}
+	p {
+		color: @black;
+		font-family: @font4;
+		font-size: 1.25em;
+	}
+}
+
+.features {
+	margin: 50px 0;
+	.img {
+		position: relative;
+		margin: 70px;
+		background: RED;
+		img {
+			box-shadow: 0 0 5px rgba(0, 0, 0, 0.75);
+			position: absolute;
+		}
+		.img1 {
+			height: 300px;
+			width: 300px;
+			top: 35px;
+			opacity: 1;
+			transition: 1s all ease-in;
+		}
+		.img2 {
+			height: 370px;
+			width: 370px;
+			left: 40px;
+			opacity: 1;
+			transition: 1s all ease-in;
+		}
+	}
+	.img.scroll {
+		.img1 {
+			left: -150px;
+			opacity: 0;
+		}
+		.img2 {
+			left: -100px;
+			opacity: 0;
+		}
+	}
+	.text {
+		h2 {
+			margin-left: 30px;
+		}
+		section {
+			margin-top: 20px;
+			transition: 1s all ease-in;
+			.icon {
+				margin-top: 10px;
+				font-size: 2.813em;
+				float: left;
+				padding: 5px 30px; 
+			}
+			h4 {
+				color: @theme_color;
+				font-family: "RobotoSlab-Bold";
+				font-size: 1.125em;
+			}
+			p {
+				font-family: @font4;
+				font-size: 1em;
+			}
+		}
+		section.scroll {
+			margin-left: 300px;
+			opacity: 0;
+		}
+	}
+}
+
+.teaching-process{
+	.left {
+		height: 600px;
+		background: url('../img/sketching.jpg');
+		font-size: 1em;
+		color: @white;
+		.cont {
+			padding: 100px;
+			height: 100%;
+			h2 {
+				color: @white;
+				text-transform: uppercase;
+				transform: rotateX(90deg);
+			}
+			p {
+				font-family: @font4;
+				font-size: 1em;
+				padding-top: 20px;
+				color: #CCCCCC;
+				transform: rotateX(90deg);
+			}
+			ul {
+				list-style: none;
+				padding-top: 20px;
+				color: #CCCCCC;
+				li {
+					font-family: @font4;
+					font-size: 1em;
+					padding: 5px 0px;
+					transform: rotateX(90deg);
+					.icon-tick-circle {
+						vertical-align: middle;
+						font-size: 1.5em;
+						padding: 0em 0.5em;
+					}
+				}
+			}
+			.btn {
+				border-radius: 50px;
+				padding: 22px 50px;
+				margin-top: 30px;
+			}
+		}
+	}
+	.right {
+		background: #E9E9E9;
+		line-height: 600px;
+		height: 600px;
+		text-align: center;
+		img {
+			margin-top: 70%;
+			margin-left: 40px; 
+			width: 70%;
+			opacity: 1;
+			transition: 1s all ease-in;
+		}
+		img.scroll {
+			margin-left: 200px;
+			opacity: 0;
+		}
+	}
+}
+
+// Media Queries
+
+// Large Desktops
+@media only screen and (max-width:1200px){
+	.cycle-slideshow {
+		.icon-circle-left  { left : 50px; font-size: 3em; }
+		.icon-circle-right { right: 50px; font-size: 3em; }
+	}
+	.features {
+		.img {
+			margin: 40px 15px 0px;
+			.img1 {
+				height: 230px;
+				width: 230px;
+				top: 35px;
+			}
+			.img2 {
+				height: 300px;
+				width: 300px;
+				left: 40px;
+			}
+		}
+	}
+}
+
+
+// Desktops
+@media only screen and (max-width:992px){
+}
+
+// Tablets
+@media only screen and (max-width:768px){
+	body { padding-top: 50px; font-size: 14px; }
+	nav[role=primary] {
+		.navbar-brand {
+			height: 50px;
+			padding-top: 10px;
+		}
+		.navbar-nav {
+			border: none;
+			a {
+				text-align: left;
+				padding-top: 14px;
+				color: @black;
+				width: 100%;
+				height: 50px;
+			}
+		}
+	}
+	.cycle-slideshow {
+		.icon-circle-left  { left : 25px; }
+		.icon-circle-right { right: 25px; }
+	}
+	.whatis { margin: 50px 0; }
+}
+
+// Phones
+@media only screen and (max-width:480px){
+	.cycle-slideshow {
+		.icon-circle-left  { font-size: 2em; }
+		.icon-circle-right { font-size: 2em; }
+	}
+
+	.teaching-process{
+		.left {
+			.cont {
+				padding: 25px;
+			}
+		}
+	}
+}
+
+
+// Settings for Retina Devices:
+@media screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2) {
+
+}
+// End of End Media Queries

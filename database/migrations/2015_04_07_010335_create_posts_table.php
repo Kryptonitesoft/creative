@@ -16,9 +16,9 @@ class CreatePostsTable extends Migration {
 			$table->engine = 'InnoDB';
 			
             $table->increments('id');
-            $table->string('title', 300);
+            $table->string('title', 100);
             $table->text('body');
-            $table->string('slug', 300);
+            $table->string('slug', 150);
             $table->smallInteger('views', false, true);
             $table->smallInteger('comment_count', false, true);
             $table->integer('author_id', false, true);
@@ -33,9 +33,6 @@ class CreatePostsTable extends Migration {
 				->onDelete('restrict')
 				->onUpdate('restrict');
         });
-
-        DB::statement('ALTER TABLE posts ADD FULLTEXT search(title, body)');
-
 	}
 
 	/**

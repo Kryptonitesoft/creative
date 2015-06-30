@@ -1,0 +1,54 @@
+<h2 class="blogTitle" id="blogTitle">{{ post.title }}</h2>
+<div class="blogAuthor">By <a href="{{post.fb}}"><span class="author">{{ post.author }}</span></a></div>
+<ul class="stat">
+	<li><span class="icon-clock"        ></span> {{ post.created_at | fixdate | date:'MMMM d, yyyy'}}</li>
+	<a ng-href="#category/{{post.category_id}}"><li><span class="icon-double-circle"></span> {{ post.category }}</li></a>
+	<li><span class="icon-comments"     ></span> {{ post.comment_count}} Comments</li>
+	<li><span class="icon-views"        ></span> {{ post.views}} Views</li>
+</ul>
+<article ta-bind class="content" ng-model="post.body">
+</article>
+
+<div class="blogComments" id="blogComments" ng-controller="CommentsController">
+	<div class="numberOfComment">{{post.comment_count}} Comments</div>
+	<div class="commentForm">
+		<div class="alert alert-danger" style="margin:0px" ng-show="errors">
+			<strong>Whoops!</strong> Somthing went wrong!
+			<ul class="repeat-animation" style="margin-left:20px" ng-repeat="error in errors">
+				<li class="repeat-animation" ng-repeat="err in error">{{err}}</li>
+			</ul>
+		</div>
+		<form class="form" ng-submit="create()">
+			<div class="form-group"><textarea placeholder="Your message here" id="focus" class="form-control" ng-model="comment.body" ng-required="true"></textarea></div>
+			<div class="container-fluid">
+				<div class="row">
+					<div class="cmntInputs col-xs-4 col-vs-12">
+						<div class="form-group"><input type="text" placeholder="Your Name" class="form-control" ng-model="comment.name" ng-required="true"></div>
+					</div>
+					<div class="cmntInputs col-xs-4 col-vs-12">
+						<div class="form-group"><input type="email" placeholder="Your Email" class="form-control" ng-model="comment.email" ng-required="true"></div>
+					</div>
+					<div class="cmntInputs col-xs-4 col-vs-12" style="padding-right:0px">
+						<div class="form-group"><button type="submit" class="button form-control">Post A Comment <span class="icon-arrow-comment"></span></button></div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="comments container-fluid">
+		<div class="row comment repeat-animation" ng-repeat="comment in comments">
+			<div class="img col-lg-2 col-sm-3 col-xs-4 col-vs-12">
+				<img src="img/male.jpg" alt="">
+			</div>
+			<div class="col-lg-10 col-sm-9 col-xs-8 col-vs-12">
+				<div class="name">{{comment.name}}</div>
+				<div class="date">{{comment.created_at | fixdate | date:'MMMM d, yyyy'}}</div>
+				<div class="msg">{{comment.body}}</div>
+				<div class="reply" ng-click="reply(comment.name)">Reply</div>
+			</div>
+		</div>
+		<div class="container-fluid text-center">
+			<pagination boundary-links="true" total-items="pagination.total" ng-model="pagination.page" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;" items-per-page="pagination.itemPerPage" rotate="true" ng-click="setPage(pagination.page)" ng-hide="pagination.total<=pagination.itemPerPage" max-size="5"></pagination>
+		</div>
+	</div>
+</div>

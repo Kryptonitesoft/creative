@@ -16,8 +16,8 @@ class CreateArchivesTable extends Migration {
 			$table->engine = 'InnoDB';
 
 			$table->increments('id');
-			$table->tinyInteger('year', false, true, 4);
-			$table->string('month', 10);
+			$table->smallInteger('year', false, true, 4);
+			$table->tinyInteger('month', false, true, 3);
 			$table->timestamps();
 		});
 	}

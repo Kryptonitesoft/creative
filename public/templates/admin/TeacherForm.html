@@ -1,0 +1,87 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-6 col-xs-7 col-vs-12">
+      <h2>Information</h2>
+      <form class="form form-horizontal" ng-submit="save()">
+          <div class="alert alert-danger col-md-9 col-sm-12" style="margin:0px; width:91%" ng-show="errors">
+            <strong>Whoops!</strong> Somthing went wrong!
+            <ul class="repeat-animation" style="margin-left:20px" ng-repeat="error in errors">
+              <li class="repeat-animation" ng-repeat="err in error">{{err}}</li>
+            </ul>
+          </div>
+          <div class="form-group">
+            <label for="name" class="control-label sr-only">Name</label>
+            <div class="col-sm-11">
+                <input type="text" class="form-control" id="name" placeholder="Name" ng-model="teacher.name" ng-required="true">
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="designation" class="control-label sr-only">Designation</label>
+            <div class="col-sm-11">
+                <input type="text" class="form-control" id="designation" placeholder="Designation" ng-model="teacher.designation">
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="teaches" class="control-label sr-only">Teaches</label>
+            <div class="col-sm-11">
+                <input type="text" class="form-control" id="Teaches" placeholder="What do you teach?" ng-model="teacher.teaches" ng-required="true">
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="education" class="control-label sr-only">Education</label>
+            <div class="col-sm-11">
+              <textarea id="education" cols="30" rows="5" ng-model="teacher.education" class="form-control" placeholder="Last Education" ng-required="true"></textarea>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="email" class="control-label sr-only">Email</label>
+            <div class="col-sm-11">
+                <input type="email" class="form-control" id="email" placeholder="Email Address" ng-model="teacher.email">
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="fb" class="control-label sr-only">Facebook</label>
+            <div class="col-sm-11">
+                <input type="text" class="form-control" id="fb" placeholder="Link to your facebook profile" ng-model="teacher.fb">
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="phone" class="control-label sr-only">Mobile</label>
+            <div class="col-sm-11">
+                <input type="text" class="form-control" id="phone" placeholder="Your mobile number" ng-model="teacher.phone">
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="description" class="control-label sr-only">Description</label>
+            <div class="col-sm-11">
+              <textarea id="description" cols="30" rows="5" ng-model="teacher.description" class="form-control" placeholder="Description"></textarea>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="file" class="control-label sr-only">Photo</label>
+            <div class="col-sm-11">
+                <input type="file" name="filefield" class="form-control" id="file" placeholder="File" ng-model="files" ngf-select ngf-change="upload($files)">
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <div class="col-sm-11">
+                <input type="submit" class="form-control button" value="Save">
+            </div>
+          </div>
+      </form>
+    </div>
+    <div class="col-sm-3 col-xs-5 col-vs-12 imagePreview" ng-hide="teacher.image == undefined">
+      <h2>Image</h2>
+      <img ng-src="{{teacher.image}}" alt="">
+    </div>
+  </div>
+</div>

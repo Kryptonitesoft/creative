@@ -22,8 +22,10 @@ class PostRequest extends Request {
 	public function rules()
 	{
 		return [
-			'title' => 'required|max:300',
-            'body'  => 'required',
+			'title'        => 'required|max:100',
+            'body'         => 'required',
+            'author_id'    => 'required',
+            'category_id'  => 'required',
 		];
 	}
 

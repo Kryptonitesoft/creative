@@ -1,0 +1,87 @@
+<div class="container-fluid printPreview">
+	<div class="row">
+		<div class="col-xs-12 formno">Form No: ...........................</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-xs-3 logo">
+			<img ng-src="../img/logo.jpg" alt="">
+		</div>
+		<div class="col-xs-6 heading">
+			<h2>Creative Coaching</h2>
+			<p>House # 25 [Ground Floor], Road # 11, Sector # 06, Uttara, Dhaka–1230</p>
+			<p>Phone: <span class="tel">01731-587382</span>, <span class="tel">01714-535536</span></p>
+			<p>eMail: <span class="email">email@creativecoaching.com.bd</span></p>
+		</div>
+		<div class="col-xs-3">
+			<img ng-src="{{student.image}}" alt="">
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-xs-12">
+			<h3 class="title">Admission Form</h3>
+		</div>
+	</div>
+
+	<div class="row info">
+		<div class="col-xs-4 field">Student's Name:</div>
+		<div class="col-xs-8 text">{{student.name}}</div>
+	</div>
+	<div class="row info">
+		<div class="col-xs-4 field">Father's Name:</div>
+		<div class="col-xs-8 text">{{student.fathers_name}}</div>
+	</div>
+	<div class="row info">
+		<div class="col-xs-4 field">Mother's Name:</div>
+		<div class="col-xs-8 text">{{student.mothers_name}}</div>
+	</div>
+	<div class="row info">
+		<div class="col-xs-4 field">School Name:</div>
+		<div class="col-xs-8 text">{{student.schools_name}}</div>
+	</div>
+
+	<div class="row info">
+		<div class="col-xs-4 field">Class:</div>
+		<div class="col-xs-8 text">{{student.class}}</div>
+	</div>
+	<div class="row info">
+		<div class="col-xs-4 field">Version:</div>
+		<div class="col-xs-8 text">{{student.version}}</div>
+	</div>
+	<div class="row info">
+		<div class="col-xs-4 field">Roll:</div>
+		<div class="col-xs-8 text">{{student.sroll}}</div>
+	</div>
+	<div class="row info">
+		<div class="col-xs-4 field">Sex:</div>
+		<div class="col-xs-8 text">{{student.sex}}</div>
+	</div>
+
+	<div class="row info">
+		<div class="col-xs-4 field">Present Address:</div>
+		<div class="col-xs-8 text">{{student.present_address}}</div>
+	</div>
+
+	<div class="row info">
+		<div class="col-xs-4 field">Permanent Address:</div>
+		<div class="col-xs-8 text">{{student.permanent_address}}</div>
+	</div>
+
+	<div class="row info">
+		<div class="col-xs-4 field">Date of Birth:</div>
+		<div class="col-xs-8 text">{{student.date_of_birth | fixdate | date:"MMMM dd, yyyy"}}</div>
+	</div>
+
+	<div class="row info">
+		<div class="col-xs-4 field">Contact No:</div>
+		<div class="col-xs-8 text">{{student.phone | phone}}</div>
+	</div>
+
+	<div class="row signature">
+		<div class="col-xs-4"><span>Student's Signature</span></div>
+		<div class="col-xs-4"><span>Parent's Signature</span></div>
+		<div class="col-xs-4"><span>Parent's Signature</span></div>
+	</div>
+	<span class="btn button hideForPrint" ng-click="print()">Print</span>
+</div>

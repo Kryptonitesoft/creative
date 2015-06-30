@@ -22,12 +22,15 @@ class TeacherRequest extends Request {
 	public function rules()
 	{
 		return [
-			'name'  =>  'required|max:60',
-            'teaches'   =>  'required|max:100',
-            'education' =>  'required|max:100',
-            'description'   =>  'required|max:300',
-            'email' =>  'required',
-            'image' => 'required|mimes:png,jpg,jpeg'
+			'id' 		  => 'numeric',
+			'name'        => 'required | max:60',
+			'designation' => 'max:30',
+			'teaches'     => 'required | max:50',
+			'education'   => 'required | max:100',
+			'decription'  => 'max:300',
+			'email'       => 'email | max:100 | unique:teachers,email,'.Request::get('id'),
+			'fb'          => 'max:100 | unique:teachers,fb,'.Request::get('id'),
+			'phone'       => 'numeric | unique:teachers,phone,'.Request::get('id')
 		];
 	}
 

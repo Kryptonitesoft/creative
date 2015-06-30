@@ -1,0 +1,95 @@
+.tiles {
+	margin-top: 30px;
+	margin-bottom: 30px;
+	figure {
+		margin: 5px 0px;
+		transition: 0.3s background ease-in;
+		font-family: @font1;
+		font-size: 0.813em;
+		padding: 10px;
+		.preview {
+			position: relative;
+			margin: 10px 0;
+			.icon {
+				line-height: 130px;
+				text-align: center;
+				font-size: 4.000em;
+				display: block;
+				margin: 0 auto;
+				height: 130px;
+				width: 100%;
+			}
+			.icon-lock-circle {
+				font-size: 1.500em;
+				position: absolute;
+				top: 0;
+				right: 0;
+				color: rgba(255, 255, 255, 0.5);
+				padding: 5px;
+				background: rgba(0, 0, 0, 0.5);
+				z-index: 1000;
+			}
+		}
+		.preview img {
+			box-shadow: 0px 0px 0px 1px @white;
+			height: 130px;
+			width: 100%;
+		}
+		.preview div {
+			background: rgba(0, 0, 0, 0.5);
+			position: absolute;
+			text-align: center;
+			height: 130px;
+			width: 100%;
+			left: 0;
+			top: 0;
+			.icon-play-circle {
+				font-size: 4.000em;
+				line-height: 130px;
+				color: rgba(212, 204, 204, 0.8);
+			}
+		}
+		.title {
+			padding-top: 10px;
+			color: @color2;
+		}
+		figcaption {
+			padding-top: 5px;
+			color: @color3;
+		}
+		&:hover {
+			background: @theme_color_light;
+			cursor: pointer;
+		}
+	}
+	figure.active {
+		background: @theme_color_light;
+	}
+}
+
+.icon-word {
+	color: #265490;
+	background: #4f80ba;
+}
+
+.icon-excel {
+	color: #2a6746;
+	background: #3a875d;
+}
+
+.icon-powerpoint {
+	color: #c1451f;
+	background: #dd6845;
+}
+
+.icon-ebook {
+	color: #ee8100;
+	background: #d34f1f;
+}
+
+// Media Queries
+@media only screen and (max-width:479px){
+	.gallery .col-xs-6 {
+		width: 100%;
+	}
+}

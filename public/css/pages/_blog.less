@@ -1,0 +1,235 @@
+.blog {
+	.blogList {
+		margin-top: 50px;
+	}
+	.blogEntry {
+		margin: 20px 0px;
+		box-shadow: 0px 0px 1px 1px @color3;
+		.left {
+			font-size: 4.000em;
+			text-align: center;
+			vertical-align: middle;
+			padding: 40px;
+		}
+	}
+	.blogTitle {
+		font-family: @font2;
+		font-size: 1.750em;
+		color: #222222;
+	}
+	.blogAuthor {
+		font-family: @font1;
+		font-size: 0.875em;
+		color: @black;
+		margin: 10px 0px;
+		.author {
+			margin-left: 10px;
+			color: #eb5635;
+			text-decoration: underline;
+		}
+	}
+	.stat {
+		font-family: @font3;
+		font-size: 0.875em;
+		list-style: none;
+		margin: 20px 0px;
+		color: @black;
+		li {
+			display: inline-block;
+			margin-right: 30px;
+			span {
+				color: #eb5635;
+				margin-right: 10px;
+			}
+		}
+	}
+	.content {
+		.disableSelection();
+		h1, h2, h3 {
+			font-family: @font2;
+			color: @black;
+		}
+		h1 { font-size: 1.750em; }
+		h2 { font-size: 1.500em; }
+		h3 { font-size: 1.250em; }
+		p {
+			font-family: @font3;
+			font-size: 1.000em;
+			color: @black;
+			margin: 25px 0px 5px;
+			b {
+				font-family: @font2;
+			}
+		}
+		blockquote {
+			margin-bottom: 0px;
+			p {
+				color: @theme_color;
+				margin: 0px 20px;
+			}
+		}
+		ul, ol {
+			font-family: @font3;
+			margin-left: 20px;
+			li {
+				color: @black;	
+				margin-left: 20px;
+				padding-left: 5px;
+			}
+		}
+		a {
+			text-decoration: underline;
+			font-family: @font2;
+			display: inline;
+			color: @black;
+			&:hover {
+				color: @theme_color;
+			}
+		}
+		iframe {
+			display: block;
+			margin: 0 auto;
+			width: 640px;
+			height: 360px;
+		}
+		img {
+			display: block;
+			margin: 0 auto;
+			width: 640px;
+		}
+	}
+	.blogComments {
+		margin-top: 20px;
+		.numberOfComment {
+			font-family: @font1;
+			font-size: 1.250em;
+			color: #222222;
+		}
+		::-webkit-input-placeholder {
+			color: #dadada;
+		}
+		.commentForm {
+			font-family: @font3;
+			font-size: 0.875em;
+			margin-top: 20px;
+			textarea {
+				height: 100px;
+				padding: 10px;
+				border-radius: 2px;
+				border: 1px solid transparent;
+				box-shadow: 0px 0px 1px .5px #c9c8c8;
+			}
+			input[type=email],
+			input[type=text],
+			button {
+				padding: 10px;
+				border-radius: 2px;
+				height: 40px;
+				border: 1px solid transparent;
+				box-shadow: 0px 0px 1px .5px #c9c8c8;
+			}
+			input[type=email]:focus,
+			input[type=text]:focus,
+			textarea:focus,
+			button:focus {
+				border: 1px solid transparent;
+				box-shadow: 0px 0px 1px 1px @theme_color;
+			}
+			.cmntInputs {
+				margin: 0px;
+				padding: 0px;
+				padding-right: 10px;
+			}
+			button {
+				font-family: @font1;
+				text-shadow: none;
+				font-size: 0.875em;
+				padding: 0;
+				border-radius: 0;
+				padding-right: 0;
+				text-transform: uppercase;
+				span {
+					vertical-align: middle;
+					margin-left: 10px;
+				}
+			}
+		}
+		.comments {
+			margin-top: 50px;
+			.comment {
+				border: 1px solid transparent;
+				box-shadow: 0px 0px 1px .5px #c9c8c8;
+				border-radius: 2px;
+				padding: 20px;
+				margin-top: 20px;
+				img {
+					width: 100px;
+					height: 100px;
+				}
+				.name {
+					padding-top: 5px;
+					font-family: @font1;
+					font-size: 1.000em;
+					color: @theme_color;
+				}
+				.date {
+					font-family: @font3;
+					font-size: 0.750em;
+					color: @black;
+					position: absolute;
+					right: 0;
+					top: 0;
+				}
+				.msg {
+					font-family: @font3;
+					font-size: 0.875em;
+					color: @black;
+					margin: 10px 0;
+				}
+				.reply {
+					font-family: @font1;
+					font-size: 0.875em;
+					color: @theme_color;
+					&:hover {
+						cursor: pointer;
+					}
+				}
+			}
+			.comment.subComment {
+				margin-left: 50px;
+			}
+		}
+	}
+}
+
+aside.blogSidebar {
+	position: fixed;
+	font-family: @font1;
+	padding-left: 100px;
+	h3 {
+		font-size: 1.000em;
+		color: @theme_color;
+		text-transform: uppercase;
+	}
+	ul {
+		list-style: none;
+		font-size: 0.875em;
+		color: @black;
+		li {
+			ul {
+				padding-left: 25px;
+			}
+			&:hover {
+				cursor: pointer;
+				color: @theme_color;
+			}
+		}
+		.activated {
+			color: @theme_color;
+		}
+	}
+}
+
+@media only screen and (max-width:479px){
+	.blog .blogComments .commentForm .cmntInputs { padding-right: 0px; }
+}

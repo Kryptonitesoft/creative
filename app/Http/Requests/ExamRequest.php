@@ -22,11 +22,11 @@ class ExamRequest extends Request {
 	public function rules()
 	{
 		return [
-			'title'   => 'required|max:300',
-			'subject' => 'required',
-			'class'	  => 'required',
-			'mark_range' => 'required',
-			'date'    => 'required',
+			'title'      => 'required|max:50',
+			'subject'    => 'required',
+			'class'	     => 'required|numeric',
+			'mark_range' => 'required|numeric',
+			'date'       => 'required|date',
 		];
 	}
 

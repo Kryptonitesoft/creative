@@ -1,15 +1,20 @@
 <?php
 
-//Model binding
-Route::model('files', 'App\Models\Fileentry');
-Route::model('exams', 'App\Models\Exam');
-Route::model('results', 'App\Models\Result');
-Route::model('blog', 'App\Models\Post');
-Route::model('comments', 'App\Models\Comment');
-Route::model('teachers', 'App\Models\Teacher');
+// Model binding
+Route::model('files'     , 'App\Models\Fileentry' );
+Route::model('teachers'  , 'App\Models\Teacher'   );
+Route::model('exams'     , 'App\Models\Exam'      );
+Route::model('results'   , 'App\Models\Result'    );
+Route::model('blog'      , 'App\Models\Post'      );
+Route::model('comments'  , 'App\Models\Comment'   );
+Route::model('admissions', 'App\Models\Admission' );
 
 Route::bind('files', function($value, $route){
-	return App\Models\Fileentry::whereFilename($value)->first();
+	return App\Models\Fileentry::whereId($value)->first();
+});
+
+Route::bind('teachers', function($value, $route){
+	return App\Models\Teacher::whereId($value)->first();
 });
 
 Route::bind('exams', function($value, $route){
@@ -24,69 +29,91 @@ Route::bind('posts', function($value, $route){
 	return App\Models\Post::whereId($value)->first();
 });
 
-
 Route::bind('comments', function($value, $route){
     return App\Models\Comment::whereId($value)->first();
 });
 
-Route::bind('teachers', function($value, $route){
-    return App\Models\Teacher::whereId($value)->first();
+Route::bind('admissions', function($value, $route){
+    return App\Models\Admission::whereId($value)->first();
 });
 
-
-//Auth
+// Auth
+Route::get('/login', 'Auth\AuthController@getLogin');
+Route::post('auth/login', 'Auth\AuthController@postLogin');
+Route::get('auth/logout', 'Auth\AuthController@getLogout');
 Route::controllers([
-    'auth' => 'Auth\AuthController',
     'password' => 'Auth\PasswordController',
 ]);
-
-
-//Admin
 Route::get('admin', [
-	'uses'	=> 'AdminController@admin',
-	'as'	=> 'admin',
+	'as' => 'admin',
+	'uses' => 'AdminController@index',
 	'middleware' => 'admin'
 ]);
 
-Route::get('upload', [
-	'uses'	=> 'AdminController@filemanager',
-	'as'	=> 'upload',
-	'middleware' => 'admin'
+// Admin APIs
+Route::group(['prefix' => 'api', 'middleware' => 'admin'], function(){
+	//File Resource Routes
+	Route::resource('files', 'FileEntryController', ['except' => ['create', 'edit']]);
+	Route::post('files/upload', 'FileEntryController@upload');
+	Route::post('files/changevisibility/{files}', 'FileEntryController@changeVisibility');
 
-]);
+	//Exam Resource Routes
+	Route::resource('exams', 'ExamsController', ['except' => ['create', 'edit']]);
+	Route::resource('exams.results', 'ResultsController', ['except' => ['create', 'edit']]);
 
-// Page routes
+	//Blog Resource Routes
+	Route::resource('posts', 'PostsController', ['except' => ['create', 'edit']]);
+	Route::resource('posts.comments', 'CommentsController', ['except' => ['create', 'edit']]);
+
+	//Teacher Resource Route
+	Route::resource("teachers", "TeacherController", ['except' => ['create', 'edit']]);
+
+	//Admission Resource Route
+	Route::resource("admissions", "AdmissionsController", ['except' => ['create', 'edit']]);
+
+	//Admin Routes
+	Route::post("admin/update", "AdminController@update");
+	Route::get("admin/changefilepassword/{pass?}", "AdminController@changeFilePassword");
+	Route::get("admin/getinfo", "AdminController@getInfo");
+	Route::get("admin/cleartemp", "AdminController@clearTemp");
+});
+
+// Guest Page Routes
 Route::get('/', 'PageController@index');
-Route::get('gallery', 'PageController@gallery');
-Route::get('docs', 'PageController@docs');
-Route::get('results', 'PageController@results');
-Route::get('About', 'PageController@about');
-Route::post('contact', 'PageController@contact');
+Route::get('gallery', ['as' => 'gallery', 'uses' => 'PageController@gallery']);
+Route::get('documents', ['as' => 'documents', 'uses' => 'PageController@documents']);
+Route::get('results', ['as' => 'results', 'uses' => 'PageController@results']);
+Route::get('about', ['as' => 'about', 'uses' => 'PageController@about']);
+Route::get('blog', ['as' => 'blog', 'uses' => 'PageController@blog']);
+Route::get('developers', ['as' => 'developers', 'uses' => 'PageController@developers']);
 
-/**
- * File resource route
- */
+// Guest APIs
+// File
+Route::get('files', 'FileEntryController@index');
+Route::post('files/upload', 'FileEntryController@upload');
+Route::post('files/download/{files}', 'FileEntryController@download');
+Route::get('files/incrementhits/{files}', 'FileEntryController@incrementHits');
 
-Route::resource('files', 'FileEntryController');
+// Exam
+Route::get('exams', 'ExamsController@index');
+Route::get('exams/{exams}', 'ExamsController@show');
 
+// Result
+Route::get('exams/{exams}/results/{results?}', 'ResultsController@index');
 
-/**
- * exam resource route
- */
+// Blog Post
+Route::get('posts', 'PostsController@index');
+Route::get('posts/{posts}', 'PostsController@show');
 
-Route::resource('exams', 'ExamsController');
-Route::resource('exams.results', 'ResultsController');
+// Blog Post Comment
+Route::get('posts/{posts}/comments/{comments?}', 'CommentsController@index');
+Route::post('posts/{posts}/comments/', 'CommentsController@store');
 
+// Admision
+Route::post('admissions', 'AdmissionsController@store');
 
+// Category
+Route::resource('categories', 'CategoriesController', ['only' => ['index', 'show']]);
 
-/**
- * blog resource route
- */
-
-Route::resource('posts', 'PostsController');
-Route::resource('posts.comments', 'CommentsController');
-Route::get('blog/search', 'BlogController@search' );
-
-
-Route::resource('teachers', 'TeachersController');
-
+// Archive
+Route::resource('archives', 'ArchivesController', ['only' => ['index', 'show']]);
