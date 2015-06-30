@@ -1,10 +1,17 @@
-## Creative coaching with Laravel-5 ##
+# Creative
 
-**[Creative coaching](http://www.creativecoaching.com.bd)** is a student admission training center.
+**[Creative](http://www.creativecoaching.com.bd)** is student college admission training center.
 
-### Installation ###
+# Goals
 
-* `install composer form https://getcomposer.org`
+* To automate entire management system.
+* Online admission(Apply).
+* Publish result in online.
+* Publish education equipment in online.
+
+# Installation
+
+*`install composer form https://getcomposer.org`
 * `git clone https://github.com/joynal/creative.git projectname`
 * `cd projectname`
 * `composer install`
@@ -12,20 +19,36 @@
 *  create a database and inform *.env*
 * `php artisan migrate` to create tables
 * `php artisan db:seed` to populate tables
+* `php artisan user:create` to create admin user
 
-### Include ###
+## Include
 
-* [Bootstrap](http://getbootstrap.com) for CSS and jQuery plugins
+* [Bootstrap](http://getbootstrap.com) for CSS and jQuery plugins.
+* [AngularJS](https://angularjs.org/) as JavaScript Framework.
+* [Textangular](http://textangular.com/) as blog editor.
 
-### Features ###
+## Features
 
 * File manager, upload, delete, edit.
 * Store exam and results.
+* Admission applicant
+* Faculty add system
 
-### Packages included ###
+## Packages included
 
 * illuminate/html
 * laracasts/generators
 * fzaninotto/faker
 * phpunit/phpunit
 * phpspec/phpspec
+
+## Enjoy
+
+```
+
+php artisan serve
+```
+
+## Author
+
+**[Joynal Abedin](https://github.com/joynal)** and **[Sabbir Rahman](https://github.com/blackheartadhar)**
