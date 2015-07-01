@@ -48,6 +48,9 @@
 
 php artisan serve
 ```
+## Admin Views
+
+Go to: `/login` to login.
 
 ## Author
 
