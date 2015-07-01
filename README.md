@@ -33,6 +33,7 @@
 * Store exam and results.
 * Admission applicant
 * Faculty add system
+* Admin dashboard
 
 ## Packages included
 
