@@ -27,19 +27,19 @@ angular
 	        	type 		: 'media',
 				orderBy  	: 'created_at',
 				total       : 1
-	        }
-		    $scope.setPage = function(){ loadPage(); }
+	        };
+		    $scope.setPage = function(){ loadPage(); };
 	        $scope.showByType = function(type){
 	        	$scope.pagination.type = type;
 	        	loadPage();
-	        }
+	        };
 		    // Fetching the Data
 			var loadPage = function(){
 				$http.get("files/", {params:$scope.pagination}).success(function(data){
 					$scope.fileEntries = data.data;
 					$scope.pagination.total = data.total;
 	        	});
-	        }
+	        };
 		    loadPage();
 
 		    // Open the ImageViewer
@@ -96,19 +96,19 @@ angular
 				isReverse 	: true,
 	        	type 		: 'file',
 				orderBy  	: 'created_at'
-	        }
-		    $scope.setPage = function(){ loadPage(); }
+	        };
+		    $scope.setPage = function(){ loadPage(); };
 	        $scope.showByType = function(type){
 	        	$scope.pagination.type = type;
 	        	loadPage();
-	        }
+	        };
 		    // Fetching the Data
 			var loadPage = function(){
 				$http.get("files/", {params:$scope.pagination}).success(function(data){
 					$scope.files = data.data;
 					$scope.pagination.total = data.total;
 	        	});
-	        }
+	        };
 		    loadPage();
 		    // Opening the Downloader
 			$scope.open = function(index, size) {
@@ -120,7 +120,7 @@ angular
 						info: function () {
 							return {
 								id: $scope.files[index].id
-							}
+							};
 						}
 					}
 				});
@@ -140,8 +140,8 @@ angular
 	.controller("ResultsController", ["$scope", "$http", "$timeout",
 		function($scope, $http, $timeout){
 			// Pagination
-	        $scope.pagination = { page: 1, total: 1, itemPerPage: 10 }
-		    $scope.setPage = function(){ loadPage(); }
+	        $scope.pagination = { page: 1, total: 1, itemPerPage: 10 };
+		    $scope.setPage = function(){ loadPage(); };
 		    var loadPage = function() {
 	  			$http.get("exams", {params:$scope.pagination}).success(function(data){ 
 	  			    $scope.exams = data.data;
@@ -166,7 +166,7 @@ angular
 				if(sortBy == $scope.sortBy) $scope.isReverse = !$scope.isReverse;
 				$scope.results = $filter('orderBy')($scope.results, sortBy, $scope.isReverse);
 				$scope.sortBy = sortBy;
-			}
+			};
 		}
 	])
 	/* End of Result Page */
@@ -213,16 +213,16 @@ angular
 	            }).success(function(data, status, headers, config){
 	            	$scope.student.image = data;
 	            });
-			}
+			};
 			$scope.create = function(){
 				$scope.student.fileName = file.name;
-				$http.post('admissions/', $scope.student)
+				$http.post('admissions', $scope.student)
 				    .success(function(){
 						$scope.success = "Your addmission request has been sent!";
 						$scope.student = {};
 						localStorage.removeItem("student");
 					}).error(function(data){ $scope.errors = data; });
-			}
+			};
 		}
 	])
 	/* End of Page */
@@ -251,7 +251,7 @@ angular
 			for(var i = 0; Math.floor(time/divider[i]) > 0; i++) {
 				time /= divider[i];
 			}
-			var plural = (Math.floor(time)>1? "s" : "")
+			var plural = (Math.floor(time)>1? "s" : "");
 			return Math.floor(time) + string[i] + plural + " ago";
   		};
 	})
@@ -310,6 +310,14 @@ angular
 		return function(input){
 			var roman = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"];
 			return roman[input-1];
-		}
+		};
+	})
+	.filter('nl2br', function($sce){
+    	return function(input, is_xhtml) {
+	        var is_xhtml = is_xhtml || true;
+	        var breakTag = (is_xhtml) ? '<br />' : '<br>';
+	        var input = (input + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1'+ breakTag +'$2');
+	        return $sce.trustAsHtml(input);
+    	};
 	});
 	/* End of Filter */

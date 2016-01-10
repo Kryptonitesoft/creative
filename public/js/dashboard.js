@@ -124,7 +124,7 @@ angular
 						break;
 				}
 			}
-		}
+		};
 	}])
 
 	.controller("MainController", ['$scope', function($scope){
@@ -151,7 +151,7 @@ angular
 					isReverse : true
 				};
                 localStorage.config = angular.toJson($scope.config);
-	        } else { $scope.config = angular.fromJson(localStorage.config); }
+	        } else { $scope.config = angular.fromJson(localStorage.config); };
 			// Pagination
 	        $scope.pagination = {
 	        	page 	    : 1,
@@ -160,8 +160,8 @@ angular
 				orderBy     : $scope.config.orderBy,
 				isReverse   : $scope.config.isReverse,
 				total       : 1
-	        }
-	        $scope.setPage = function(pageNo){ $scope.loadPage(); }
+	        };
+	        $scope.setPage = function(pageNo){ $scope.loadPage(); };
 	        // Fetching the Entries
 	       	$scope.loadPage = function(){
 	       		File.query($scope.pagination, function(data){
@@ -173,7 +173,7 @@ angular
 						}
 					}
 	       		})
-	        }
+	        };
 	        $scope.loadPage();
 			// Selection
 	        $scope.selected = [];
@@ -181,10 +181,10 @@ angular
 			$scope.select = function(index){
 				$scope.isSelected(index) ? $scope.selected.splice($scope.selected.indexOf(index), 1) : $scope.selected.push(index);
 				$scope.selectedCount = $scope.selected.length;
-			}
+			};
 			$scope.isSelected = function(index){
 				return $scope.selected.indexOf(index) > -1
-			}
+			};
 			// Image Viewer Opener
 			$scope.open = function (index, id, size) {
 				if($scope.fileEntries[index].type != 'image' && $scope.fileEntries[index].type != 'video') return;
@@ -203,7 +203,7 @@ angular
 					}
 				});
 				setTimeout(function(){ document.getElementById("imageViewer").focus(); }, 100);
-			}
+			};
 		}
 	])
 	.controller("AddFileController", ["$scope", "$resource", '$location', '$timeout', "Upload", 'File', "Util",
@@ -233,7 +233,7 @@ angular
 	            }).error(function(err){
 	            	$scope.errors = err;
 	            });
-			}
+			};
 			$scope.save = function(){
 				if($scope.fileEntry.type != 'video' && file)
 					$scope.fileEntry.fileName = file.name;
@@ -242,20 +242,20 @@ angular
 				}, function(err){
 					$scope.errors = err.data;
 				});
-			}
+			};
 			$scope.loadThumbnail = function() {
 				$scope.fileEntry.type = ($scope.fileEntry.link.length > 0) ? $scope.fileEntry.type = "video" : $scope.fileEntry.type = undefined;
 				$scope.fileEntry.thumbnail  = 'http://img.youtube.com/vi/' + $scope.fileEntry.link + '/mqdefault.jpg';
 	            $scope.fileEntry.created_at = new Date();
-			}
+			};
 			$scope.changevisibility = function(){
 				$scope.fileEntry.isVisible = !$scope.fileEntry.isVisible;
-			}
+			};
 			var detectType = function() {
 				$scope.fileEntry.type       = Util.getFileType(file.name);
 	            $scope.fileEntry.created_at = new Date();
 	            $scope.fileEntry.size       = file.size;
-			}
+			};
 		}
 	])
 	.controller("EditFileController", ["$scope", "$routeParams", "$location", "Upload", 'File',
@@ -267,11 +267,12 @@ angular
 			});
 			$scope.changevisibility = function(){
 				$scope.fileEntry.isVisible = !$scope.fileEntry.isVisible;
-			}
+			};
 			$scope.save = function(){
-				$scope.fileEntry.$update({id:fileId});
-				$location.path('/').replace();
-			}
+				$scope.fileEntry.$update({id:fileId}, function(){
+					$location.path('/').replace();
+				});
+			};
 		}
 	])
 	// File Entry Helper Controllers
@@ -310,7 +311,7 @@ angular
 				var index = $scope.selected[0];
 				var id = $scope.fileEntries[index].id;
 				$location.url("/files/edit/" + id);
-			}
+			};
 
 	        $scope.changeVisibility = function(){
 	        	for(var i=0; i<$scope.selected.length; i++) {
@@ -321,7 +322,7 @@ angular
 	        	}
 	        	$scope.$parent.selected = [];
 	        	$scope.$parent.selectedCount = 0;
-	        }
+	        };
 
 	        $scope.delete = function(){
 	        	$scope.selected.sort(function(a, b){return a-b});
@@ -332,7 +333,7 @@ angular
 	        	}
 	        	$scope.$parent.selected = [];
 	        	$scope.$parent.selectedCount = 0;
-	        }
+	        };
 
 	        $scope.setOrderBy = function(orderBy){
 	        	if(orderBy == $scope.config.orderBy)
@@ -342,7 +343,7 @@ angular
 	        	$scope.pagination.isReverse = $scope.config.isReverse;
                 localStorage.config = angular.toJson($scope.config);
 	        	$scope.loadPage();
-	        }
+	        };
 		}
 	])
 	/* End of File Entry Module */
@@ -357,7 +358,7 @@ angular
     			var teacherId = $scope.teachers[index].id;
     			Teacher.delete({id : teacherId});
     			$scope.teachers.splice(index, 1);
-    		}
+    		};
 		}
 	])
 	.controller("AddTeacherController", ['$rootScope', '$scope', '$resource', '$location', 'Upload', 'Teacher',
@@ -370,11 +371,11 @@ angular
 				file = $files[0];
 				if(file == undefined) return;
 				if(/[^.]+$/.exec(file.name)[0].toLowerCase() != 'jpg') {
-					$scope.errors = { file: ["Invalid image type! Only jpg image is supported."] }
+					$scope.errors = { file: ["Invalid image type! Only jpg image is supported."] };
 					return;
 				}
 				if(file.size > 2097152) {
-					$scope.errors = { file: ["The image file may not be greater than 2 MB."] }
+					$scope.errors = { file: ["The image file may not be greater than 2 MB."] };
 					return;
 				}
 				Upload.upload({
@@ -385,7 +386,7 @@ angular
 	            }).error(function(err){
 	            	$scope.errors = err.data;
 	            });
-			}
+			};
 			$scope.save = function(){
 				if(file) $scope.teacher.fileName = file.name;
 				Teacher.save($scope.teacher, function(){
@@ -393,7 +394,7 @@ angular
 				}, function(err){
 					$scope.errors = err.data;
 				});
-			}
+			};
 		}
 	])
 	.controller("EditTeacherController", ['$scope', '$resource', '$routeParams', '$location', 'Teacher', 'Upload',
@@ -420,7 +421,7 @@ angular
 	            }).error(function(err){
 	            	$scope.errors = err.data;
 	            });
-			}
+			};
 			$scope.save = function(){
 				if(file) $scope.teacher.fileName = file.name;
 				$scope.teacher.$update({id:teacherId}, function(){
@@ -428,7 +429,7 @@ angular
 				}, function(err){
 					$scope.errors = err.data;
 				});
-			}
+			};
 		}
 	])
 	/* End of Teacher Module */
@@ -439,19 +440,19 @@ angular
 		function($rootScope, $scope, Exam){
 			$rootScope.current = "result";
 			// Pagination
-	        $scope.pagination = { page: 1, itemPerPage: 10, total: 1 }
-		    $scope.setPage = function(){ loadPage(); }
+	        $scope.pagination = { page: 1, itemPerPage: 10, total: 1 };
+		    $scope.setPage = function(){ loadPage(); };
 			var loadPage = function(){
 				$scope.exams = Exam.query($scope.pagination, function(data){
 					$scope.exams = data.data;
 					$scope.pagination.total = data.total;
 				});
-			}
+			};
 			loadPage();
 	        $scope.delete = function(index){
 	        	Exam.delete({'id':$scope.exams[index].id});
 	        	$scope.exams.splice(index, 1);
-	        }
+	        };
 		}
 	])
 	.controller("AddExamController", ['$rootScope', '$scope', '$location', 'Exam', 'BlogCategory', 'Util',
@@ -469,7 +470,7 @@ angular
 	  			}, function(err){
 	  				$scope.errors = err.data;
 	  			});
-	  		}
+	  		};
 		}
 	])
 	/* End of Exam Module */
@@ -497,51 +498,52 @@ angular
 	        		return obj.sroll == $scope.student.sroll;
 	        	})
 	        	if(test.length>0) {
-	        		$scope.errors = { sroll : ['A student with the same roll is already inserted.'] }
+	        		$scope.errors = { sroll : ['A student with the same roll is already inserted.'] };
 	        	} else if($scope.student.mark > $scope.exam.mark_range) {
-	        		$scope.errors = { mark : ["A student's mark can not be greater than mark range."] }
+	        		$scope.errors = { mark : ["A student's mark can not be greater than mark range."] };
 	        	} else {
 	        		$scope.student = Result.save({'examId':$scope.examId}, $scope.student, function(){
 	        			$scope.results.push($scope.student);
+	        			$scope.student = {};
 	        		}, function(err){
 	        			$scope.errors = err.data;
 	        		});
 	        	}
-	        }
+	        };
 	        /* Update Result */
 	        $scope.updateResult = function(index){
 	        	$scope.editMode = -1;
 	        	var resultId = $scope.results[index].id;
 	        	$scope.results[index].$update({'examId':$scope.examId, 'resultId':resultId});
-	        }
+	        };
 	        /* Delete Result */
 	        $scope.delete = function(index){
 	        	Result.delete({'examId':$scope.examId, 'resultId':$scope.results[index].id});
 	        	$scope.results.splice(index, 1);
-	        }
+	        };
 	        /* Update Exam */
 	        $scope.updateExam = function(){
 	        	$scope.exam.$update({'id':$scope.examId});
 	        	$location.path('/exams');
-	        }
+	        };
 	        /* Helper Functions */
 	        $scope.enableEdit = function(index){
 	        	var resultId = $scope.results[index].id;
 	        	$scope.results[index] = Result.get({'examId':$scope.examId, 'resultId':resultId});
 	        	$scope.editMode = index;
-	        }
+	        };
 			$scope.print = function(){
 				$('.hideForPrint').hide();
 				$('.showForPrint').show();
 				window.print();
 				$('.hideForPrint').show();
 				$('.showForPrint').hide();
-			}
+			};
 			$scope.sort = function(sortBy){
 				if(sortBy == $scope.sortBy) $scope.isReverse = !$scope.isReverse;
 				$scope.results = $filter('orderBy')($scope.results, sortBy, $scope.isReverse);
 				$scope.sortBy = sortBy;
-			}
+			};
 		}
 	])
 	/* End of Result Module */
@@ -555,7 +557,7 @@ angular
 			$scope.destroy = function(index){
 				Admission.delete({'id':$scope.admissions[index].id});
 				$scope.admissions.splice(index, 1);
-			}
+			};
 		}
 	])
 	.controller("EditAdmissionController", ['$rootScope', '$scope', '$routeParams', '$location', 'Admission', 'Upload',
@@ -571,11 +573,11 @@ angular
 				file = $files[0];
 				if(file == undefined) return;
 				if(/[^.]+$/.exec(file.name)[0].toLowerCase() != 'jpg') {
-					$scope.errors = { file: ["Invalid image type! Only jpg image is supported."] }
+					$scope.errors = { file: ["Invalid image type! Only jpg image is supported."] };
 					return;
 				}
 				if(file.size > 2097152) {
-					$scope.errors = { file: ["The image file may not be greater than 2 MB."] }
+					$scope.errors = { file: ["The image file may not be greater than 2 MB."] };
 					return;
 				}
 				Upload.upload({
@@ -586,7 +588,7 @@ angular
 	            }).error(function(err){
 	            	$scope.errors = err.data;
 	            });
-			}
+			};
 			$scope.update = function(){
 				if(file) $scope.student.fileName = file.name;
 				$scope.student.$update({'id':$routeParams.id}, function(){
@@ -594,14 +596,14 @@ angular
 				}, function(err){
 					$scope.errors = err.data;
 				});
-			}
+			};
 			$scope.print = function(){
 				$('.hideForPrint').hide();
 				$('.showForPrint').show();
 				window.print();
 				$('.hideForPrint').show();
 				$('.showForPrint').hide();
-			}
+			};
 		}
 	])
 	/* End of Admission Module */
@@ -612,19 +614,19 @@ angular
 		function($rootScope, $scope, BlogPost, Teacher){
 			$rootScope.current = "blog";
 			// Pagination
-	        $scope.pagination = { page: 1, itemPerPage: 10, total:1 }
-		    $scope.setPage = function(){ loadPage(); }
+	        $scope.pagination = { page: 1, itemPerPage: 10, total:1 };
+		    $scope.setPage = function(){ loadPage(); };
 			var loadPage = function(){
 				$scope.posts = BlogPost.query($scope.pagination, function(data){
 					$scope.posts = data.data;
 					$scope.pagination.total = data.total;
 				});
-			}
+			};
 			loadPage();
 			$scope.destroy = function(index){
 				BlogPost.delete({id:$scope.posts[index].id});
 				$scope.posts.splice(index, 1);
-			}
+			};
 		}
 	])
 	.controller("AddBlogPostController", ['$rootScope', '$scope', '$location', 'BlogPost', 'BlogCategory', 'Teacher',
@@ -633,7 +635,7 @@ angular
 			$scope.addMode = true;
 			$scope.post = {};
 			$scope.authors = Teacher.query();
-			$scope.categories = BlogCategory.query();
+			$scope.categories = BlogCategory.query({'admin':1});
 			$scope.save = function(){
 				$scope.errors = undefined;
 				BlogPost.save($scope.post, function(){
@@ -641,7 +643,7 @@ angular
 				}, function(err){
 					$scope.errors = err.data;
 				});
-			}
+			};
 		}
 	])
 	.controller("EditBlogPostController", ['$rootScope', '$scope', '$routeParams', '$location', 'BlogPost', 'BlogComment', 'BlogCategory', 'Teacher',
@@ -655,11 +657,11 @@ angular
 			$scope.save = function(){
 				$scope.post.$update({id:postId});
 	  			$location.path('/posts').replace();
-			}
+			};
 			$scope.comments = {};
 			// Pagination
-	        $scope.pagination = { page: 1, itemPerPage: 5, total:1 }
-		    $scope.setPage = function(){ $scope.showComments(); }
+	        $scope.pagination = { page: 1, itemPerPage: 5, total:1 };
+		    $scope.setPage = function(){ $scope.showComments(); };
 			$scope.showComments = function(){
 				$scope.comments = BlogComment.query({
 					postId      : postId,
@@ -671,11 +673,11 @@ angular
 					$scope.isCollapsed = false;
 				});
 				$('.panel-body').slideDown();
-			}
+			};
 			$scope.deleteComment = function(index) {
 				BlogComment.delete({'postId':postId, 'commentId':$scope.comments[index].id});
 				$scope.comments.splice(index, 1);
-			}
+			};
 		}
 	])
 	/* End of Blog Post Module */
@@ -690,7 +692,7 @@ angular
 				.success(function(data){
 					$scope.info = data;
 				}
-			)
+			);
 			$scope.update = function(){
 				$scope.errors = undefined;
 				$http.post("api/admin/update", $scope.admin).success(function(data){
@@ -702,15 +704,15 @@ angular
 				}).error(function(err){
 					$scope.errors = err;
 				});
-			}
+			};
 			$scope.changeFilePassword = function(){
 				$http.get("api/admin/changefilepassword/" + $scope.newPass)
-					 .success(function(data){ $scope.info.filepass = data; })
-			}
+					 .success(function(data){ $scope.info.filepass = data; });
+			};
 			$scope.clearTemp = function(){
 				$http.get("api/admin/cleartemp")
-					 .success(function(data){ $scope.info.tempsize = data; })
-			}
+					 .success(function(data){ $scope.info.tempsize = data; });
+			};
 		}
 	])
 	/* End of Admin Module */
@@ -775,7 +777,7 @@ angular
 	})
 	.filter("thumbnail", function() {
 		return function(input) {
-			if(input == '') return;
+			if(input == '' || input == undefined) return;
 			if(!input.match(/^fileStorage/)) {
 			 	return 'http://img.youtube.com/vi/' + input + '/mqdefault.jpg';
 			}
@@ -806,7 +808,15 @@ angular
 		return function(input){
 			var roman = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"];
 			return roman[input-1];
-		}
+		};
+	})
+	.filter('nl2br', function($sce){
+    	return function(input, is_xhtml) {
+	        var is_xhtml = is_xhtml || true;
+	        var breakTag = (is_xhtml) ? '<br />' : '<br>';
+	        var input = (input + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1'+ breakTag +'$2');
+	        return $sce.trustAsHtml(input);
+    	};
 	});
 	// End of Filters
 

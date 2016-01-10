@@ -94,6 +94,7 @@
 	<script src='../js/library/loading-bar.min.js'></script>
 	<script src="../js/dashboard.js"></script>-->
 	<script src="../js/dashboard.min.js"></script>
+	<script src="../js/dashboard.js"></script>
 </body>
 
 </html>

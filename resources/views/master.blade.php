@@ -40,14 +40,14 @@
 			<div class="collapse navbar-collapse navbar-right" id="mainnav">
 				<ul class="nav navbar-nav">
 					<li><a href="/">Home</a></li>
-					<li><a href="{{ url('/gallery') }}">Galary</a></li>
-					<li><a href="{{ url('/about') }}">About</a></li>
+					<li><a href="/gallery">Galary</a></li>
+					<li><a href="/about">About</a></li>
 					<li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">More <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="{{ url('/about#packages') }}">Admission</a></li>
-							<li><a href="{{ url('/documents') }}">Documents</a></li>
-							<li><a href="{{ url('/results') }}">Results</a></li>
-							<li><a href="{{ url('/blog') }}">Blog</a></li>
+							<li><a href="/about#packages">Admission</a></li>
+							<li><a href="/documents">Documents</a></li>
+							<li><a href="/results">Results</a></li>
+							<li><a href="/blog">Blog</a></li>
 			          	</ul>
 					</li>
 				</ul>
@@ -88,10 +88,10 @@
 	<script src='js/library/textAngular-sanitize.min.js'></script>
 	<script src='js/library/textAngular.min.js'></script>
 	<script src='js/library/loading-bar.min.js'></script>
-	<script src="js/animation.js"></script>
-	<script src="js/creative.js"></script>
-	<script src='js/blog.js'></script>-->
+	<script src="js/animation.js"></script>-->
 	<script src='js/app.min.js'></script>
+	<script src="js/creative.js"></script>
+	<script src='js/blog.js'></script>
 	@yield("script");
 	
 </body>

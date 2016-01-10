@@ -34,8 +34,8 @@
 					Uttara University<br>
 				</div>
 				<div class="education rotateX" ta-bind>
-					Primary Skills: PHP, Laravel, MySQL, Database Design, JavaScript, Git.<br>
-					Seconday Skills: HTML5, CSS3, jQuery, AngularJS, Photoshop, Illustrator.
+					Primary Skills: PHP, Laravel, MySQL, Photoshop, Illustrator.<br>
+					Seconday Skills: HTML5, CSS3, JavaScript/jQuery, AngularJS.
 				</div>
 				<blockquote class="hidden-sm hidden-xs rotateX">Hi, My name is Joynal. I've worked mostly on the back-end of this project but a little bit in the front-end too. I've also degined the UI/UX of this project.</blockquote>
 			</div>

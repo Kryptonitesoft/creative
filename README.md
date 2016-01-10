@@ -1,6 +1,6 @@
 # Creative
 
-**[Creative](http://www.creativecoaching.com.bd)** is student college admission training center.
+**[Creative](http://www.creativecoaching.com.bd)** is a coaching center for the students willing to admit in Rajuk Model School & College. It also provides academic coaching for the students of class V to XII.
 
 # Goals
 
@@ -55,4 +55,4 @@ Go to: `/login` to login.
 
 ## Author
 
-**[Joynal Abedin](https://github.com/joynal)** and **[Sabbir Rahman](https://github.com/blackheartadhar)**
+**[Joynal Abedin](https://github.com/joynal)** and **[Sabbir Rahman](https://github.com/sabbirrahman)**

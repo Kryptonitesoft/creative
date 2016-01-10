@@ -115,26 +115,24 @@
 
 @section("script")
 	<script>
-		$(document).ready(function(){
-			var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
-			var isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);
-	    	if(isChrome || isSafari){
-				$(".cycle-slideshow img").css({
-					"height": window.innerHeight - 100 + "px",
-					"width" : window.innerWidth - 5 + "px"
-				});
-				$(".cycle-slideshow .transparent").css({
-					"height": window.innerHeight - 100 + "px"
-				});
-	    	} else {
-				$(".cycle-slideshow img").css({
-					"height": window.innerHeight - 100 + "px",
-					"width" : window.innerWidth - 17 + "px"
-				});
-				$(".cycle-slideshow .transparent").css({
-					"height": window.innerHeight - 100 + "px"
-				});
-	    	}
-		});
+		var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+		var isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);
+    	if(isChrome || isSafari){
+			$(".cycle-slideshow img").css({
+				"height": window.innerHeight - 100 + "px",
+				"width" : window.innerWidth - 5 + "px"
+			});
+			$(".cycle-slideshow .transparent").css({
+				"height": window.innerHeight - 100 + "px"
+			});
+    	} else {
+			$(".cycle-slideshow img").css({
+				"height": window.innerHeight - 100 + "px",
+				"width" : window.innerWidth - 17 + "px"
+			});
+			$(".cycle-slideshow .transparent").css({
+				"height": window.innerHeight - 100 + "px"
+			});
+    	}
 	</script>
 @stop

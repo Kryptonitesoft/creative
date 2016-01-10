@@ -80,12 +80,12 @@ Route::group(['prefix' => 'api', 'middleware' => 'admin'], function(){
 
 // Guest Page Routes
 Route::get('/', 'PageController@index');
-Route::get('gallery', ['as' => 'gallery', 'uses' => 'PageController@gallery']);
-Route::get('documents', ['as' => 'documents', 'uses' => 'PageController@documents']);
-Route::get('results', ['as' => 'results', 'uses' => 'PageController@results']);
-Route::get('about', ['as' => 'about', 'uses' => 'PageController@about']);
-Route::get('blog', ['as' => 'blog', 'uses' => 'PageController@blog']);
-Route::get('developers', ['as' => 'developers', 'uses' => 'PageController@developers']);
+Route::get('gallery', 'PageController@gallery');
+Route::get('documents', 'PageController@documents');
+Route::get('results', 'PageController@results');
+Route::get('about', 'PageController@about');
+Route::get('blog', 'PageController@blog');
+Route::get('developers', 'PageController@developers');
 
 // Guest APIs
 // File

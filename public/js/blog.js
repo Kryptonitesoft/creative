@@ -1,7 +1,7 @@
 angular
 	.module("CreativeBlog", ['ngRoute', "ngResource", 'ngAnimate', "ui.bootstrap", "textAngular", 'angular-loading-bar'])
 	
-	.config(['$routeProvider', '$sceDelegateProvider', '$sceProvider',
+	.config(['$routeProvider',
 		function($routeProvider) {
 			$routeProvider
 				.when("/"            , { templateUrl: "templates/blog/BlogList.html"    , controller: "BlogPostsController"     })
@@ -41,14 +41,14 @@ angular
 	.controller("BlogPostsController", ["$scope", "$http",
 		function($scope, $http){
 			// Pagination
-	        $scope.pagination = { page: 1, itemPerPage: 10, total: 1 }
-		    $scope.setPage = function(){ loadPage(); }
+	        $scope.pagination = { page: 1, itemPerPage: 10, total: 1 };
+		    $scope.setPage = function(){ loadPage(); };
 		    var loadPage = function(){
 		    	$http.get("posts", {params:$scope.pagination}).success(function(data){
 					$scope.posts = data.data;
 					$scope.pagination.total = data.total;
 				});
-		    }
+		    };
 			loadPage();
 		}
 	])
@@ -58,14 +58,14 @@ angular
 			$scope.$parent.category_id = $scope.category_id;
 			$scope.$parent.archive_id  = "";
 			// Pagination
-	        $scope.pagination = { page: 1, itemPerPage: 10, total: 1 }
-		    $scope.setPage = function(){ loadPage(); }
+	        $scope.pagination = { page: 1, itemPerPage: 10, total: 1 };
+		    $scope.setPage = function(){ loadPage(); };
 		    var loadPage = function(){
 		    	$http.get("categories/" + $scope.category_id, {params:$scope.pagination}).success(function(data){
 					$scope.posts = data.data;
 					$scope.pagination.total = data.total;
 				});
-		    }
+		    };
 			loadPage();
 		}
 	])
@@ -75,14 +75,14 @@ angular
 			$scope.$parent.archive_id  = $scope.archive_id;
 			$scope.$parent.category_id = "";
 			// Pagination
-	        $scope.pagination = { page: 1, itemPerPage: 10, total: 1 }
-		    $scope.setPage = function(){ loadPage(); }
+	        $scope.pagination = { page: 1, itemPerPage: 10, total: 1 };
+		    $scope.setPage = function(){ loadPage(); };
 		    var loadPage = function(){
 		    	$http.get("archives/" + $scope.archive_id, {params:$scope.pagination}).success(function(data){
 					$scope.posts = data.data;
 					$scope.pagination.total = data.total;
 				});
-		    }
+		    };
 			loadPage();
 		}
 	])
@@ -98,14 +98,14 @@ angular
 	.controller("CommentsController", ["$scope", "$http", "$location", "BlogComment",
 		function($scope, $http, $location, BlogComment){
 			// Pagination
-	        $scope.pagination = { page: 1, itemPerPage: 10 }
-		    $scope.setPage = function(){loadPage(); }
+	        $scope.pagination = { page: 1, itemPerPage: 10 };
+		    $scope.setPage = function(){loadPage(); };
 		    var loadPage = function(){
-				$http.get("posts/" + $scope.postId + "/comments/", {params:$scope.pagination}).success(function(data){
+				$http.get("posts/" + $scope.postId + "/comments", {params:$scope.pagination}).success(function(data){
 					$scope.comments = data.data;
 					$scope.pagination.total = data.total;
 				});
-		    }
+		    };
 		    loadPage();
 			$scope.comment = {};
 			$scope.create = function(){
@@ -119,14 +119,14 @@ angular
 				 }, function(err){
 						$scope.errors = err.data;
 				});
-			}
+			};
 			$scope.reply = function(name) {
 				$scope.comment.body = "@" + name + " ";
 				$('html, body').animate({
 				    scrollTop: $("#focus").offset().top - 150
 				}, 800);
 				$("#focus").focus();
-			}
+			};
 		}
 	])
 

@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder {
 		$this->call('AdmissionsTableSeeder');
 		$this->call('CategoryTableSeeder');
 		$this->call('PostTableSeeder');
-		//$this->call('UserTableSeeder');
+		$this->call('UserTableSeeder');
 	}
 
 }

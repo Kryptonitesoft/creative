@@ -51,7 +51,7 @@
           <figure>
             <div class="preview" ng-click="changevisibility()">
               <span ng-hide="fileEntry.isVisible" class="icon-lock-circle"></span>
-              <img ng-src="{{fileEntry.thumbnail}}" alt="{{fileEntry.title}}">
+              <img ng-src="{{fileEntry.link | thumbnail}}" alt="{{fileEntry.title}}">
               <div ng-show="fileEntry.type=='video'"><span class="icon-play-circle"></span></div>
               <div ng-show="fileEntry.type!='video'&&fileEntry.type!='image'"><span class="icon icon-{{fileEntry.type | icon}}"></span></div>
             </div>

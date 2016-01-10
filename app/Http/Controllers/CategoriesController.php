@@ -20,6 +20,9 @@ class CategoriesController extends Controller {
 	 */
 	public function index()
 	{
+		if(Input::has('admin') && Input::get('admin') == 1) {
+			return Category::all();
+		}
 		$ids = CategoryPost::select('category_id')->distinct()->get();
 		$category = []; $i = 0;
 		

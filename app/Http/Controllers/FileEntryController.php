@@ -113,7 +113,7 @@ class FileEntryController extends Controller {
 
 	public function upload(FileUploadRequest $request) {
 		$filename = $_FILES['file']['name'];
-  		$destination = 'fileStorage/temp/' . $filename;
+		$destination = 'fileStorage/temp/' . $filename;
 		move_uploaded_file($_FILES['file']['tmp_name'], $destination);
 		return $destination;
 	}

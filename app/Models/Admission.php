@@ -21,6 +21,7 @@ class Admission extends Model {
     	'phone',
     	'email',
     	'image',
+        'religion',
         'package'
     ];
 }

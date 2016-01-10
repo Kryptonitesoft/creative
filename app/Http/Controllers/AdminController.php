@@ -29,7 +29,7 @@ class AdminController extends Controller {
 
 	public function getInfo() {
 		$info["filepass"] = file_get_contents("../filepassword");
-		$info["tempsize"] = Self::getFolderSize("fileStorage/temp/");
+		$info["tempsize"] = AdminController::getFolderSize("fileStorage/temp/");
 		return $info;
 	}
 
@@ -52,7 +52,7 @@ class AdminController extends Controller {
   		if(is_file($file))
     		unlink($file);
 		}
-		return Self::getFolderSize("fileStorage/temp/");
+		return AdminController::getFolderSize("fileStorage/temp/");
 	}
 
 	public static function getFolderSize($folderName) {

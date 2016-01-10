@@ -1,7 +1,7 @@
 /vendor
+/bootstrap/compiled.php
 /node_modules
-Homestead.yaml
-.env
 /.idea
-_ide_helper.php
-.phpstorm.meta.php
+.env.*.php
+.env.php
+.env

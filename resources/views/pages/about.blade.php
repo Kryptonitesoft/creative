@@ -16,8 +16,8 @@
 					{{$teachers[0]->designation}}<br>
 					Creative Coaching
 				</div>
-				<div class="education rotateX" ta-bind><?= nl2br($teachers[0]->education); ?></div>
-				<blockquote class="hidden-sm hidden-xs rotateX">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos asperiores tempore maiores debitis assumenda autem similique reprehenderit dolor esse consectetur ab, unde quis itaque? Recusandae numquam nobis dicta illo qui.</blockquote>
+				<div class="education rotateX"><?= nl2br($teachers[0]->education)?></div>
+				<blockquote class="hidden-sm hidden-xs rotateX">{{$teachers[0]->education}}</blockquote>
 			</div>
 		</div>
 

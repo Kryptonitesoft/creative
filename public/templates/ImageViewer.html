@@ -12,6 +12,6 @@
     </div>
     <div class="modal-footer">
     	<div class="uploaded">Uploaded: {{fileEntry.created_at | ago}}</div>
-    	<div class="description">{{fileEntry.description | limitTo:300}}</div>
+    	<div class="description" ng-bind-html="fileEntry.description | nl2br"></div>
     </div>
 </div>

@@ -40,5 +40,5 @@ $(document).ready(function(){
 		if(y>=1500) $(".social a").addClass("animated zoomIn");
 
 		if(y>=1000) $(".packages section").addClass("animated zoomIn");
-	})
+	});
 });

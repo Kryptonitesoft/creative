@@ -23,7 +23,7 @@ class FileUploadRequest extends FileRequest {
 	public function rules()
 	{
 		return [
-			'file' => 'max:2048 | mimes:jpeg,gif,png,doc,docx,ppt,pptx,pps,ppsx,pdf'
+			'file' => 'max:2048'// | mimes:jpeg,gif,png,doc,docx,ppt,pptx,pps,ppsx,pdf'
 		];
 	}
 
