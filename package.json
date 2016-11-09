@@ -1,7 +1,37 @@
 {
+  "nane": "creativecoaching",
+  "version": "1.0.0",
   "private": true,
   "devDependencies": {
     "gulp": "^3.8.8",
     "laravel-elixir": "*"
-  }
+  },
+  "name": "creativecoaching",
+  "description": "**[Creative coaching](http://www.creativecoaching.com.bd)** is a student admission training center.",
+  "main": "gulpfile.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kryptonitesoft/creative.git"
+  },
+  "keywords": [
+    "creative",
+    "coaching",
+    "laravel-app",
+    "angular-app"
+  ],
+  "authors": [
+  	"Md. Joynal Abedin <joynal3483@gmail.com>",
+  	"Md. Sabbir Rahman <sabbir.jassim@gmail.com>",
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kryptonitesoft/creative/issues"
+  },
+  "homepage": "https://github.com/kryptonitesoft/creative#readme"
 }
