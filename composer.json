@@ -5,7 +5,7 @@
 	"license": "MIT",
 	"type": "project",
 	"require": {
-		"laravel/framework": "4.1.*",
+		"laravel/framework": "5.0.*",
 		"fzaninotto/faker": "1.5.*@dev",
 		"illuminate/html": "5.0.*@dev",
 		"intervention/image": "^2.2"
