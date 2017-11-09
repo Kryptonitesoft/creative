@@ -1,18 +1,31 @@
 # Creative
 
-**[Creative](http://www.creativecoaching.com.bd)** is a coaching center for the students willing to admit in Rajuk Model School & College. It also provides academic coaching for the students of class V to XII.
+Creative is training center management system for publishing tutorials, slides, exam result and organize quiz.
 
-# Goals
+## Features
 
-* To automate entire management system.
-* Online admission(Apply).
-* Publish result in online.
-* Publish education equipment in online.
+* Automate entire management system
+* Online admission(Apply)
+* Publish result in online
+* Publish education equipment in online
+* File manager, upload, delete, edit.
+* Store exam and results.
+* Admission applicant
+* Faculty add system
+* Admin dashboard
 
-# Installation
+## Prerequisites
 
-*`install composer form https://getcomposer.org`
-* `git clone https://github.com/joynal/creative.git projectname`
+* PHP >= 5.4, PHP < 7
+* Mcrypt PHP Extension
+* OpenSSL PHP Extension
+* Mbstring PHP Extension
+* Tokenizer PHP Extension
+
+## Installing
+
+* `install composer form https://getcomposer.org`
+* `git clone https://github.com/Kryptonitesoft/creative projectname`
 * `cd projectname`
 * `composer install`
 * `php artisan key:generate`
@@ -21,38 +34,34 @@
 * `php artisan db:seed` to populate tables
 * `php artisan user:create` to create admin user
 
-## Include
+## Built With
 
 * [Bootstrap](http://getbootstrap.com) for CSS and jQuery plugins.
 * [AngularJS](https://angularjs.org/) as JavaScript Framework.
 * [Textangular](http://textangular.com/) as blog editor.
 
-## Features
-
-* File manager, upload, delete, edit.
-* Store exam and results.
-* Admission applicant
-* Faculty add system
-* Admin dashboard
-
-## Packages included
-
-* illuminate/html
-* laracasts/generators
-* fzaninotto/faker
-* phpunit/phpunit
-* phpspec/phpspec
-
 ## Enjoy
 
 ```
-
 php artisan serve
 ```
 ## Admin Views
 
 Go to: `/login` to login.
 
-## Author
+## Contributing
 
-**[Joynal Abedin](https://github.com/joynal)** and **[Sabbir Rahman](https://github.com/sabbirrahman)**
+Please read [CONTRIBUTING.md](https://github.com/Kryptonitesoft/creative/blob/master/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
+
+## Versioning
+
+We use [SemVer](http://semver.org/) for versioning.
+
+## Authors
+
+* **Joynal Abedin** - *Backend development* - [Joynal](https://github.com/joynal)
+* **Sabbir Rahman** - *Frontend development* - [Sabbir](https://github.com/sabbirrahman)
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
